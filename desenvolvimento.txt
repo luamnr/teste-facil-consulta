@@ -1,0 +1,56 @@
+software cadastro médico
+    - 4 telas
+        - cadastro com (nome completo, cpf, celular, estado, cidade)
+        - continuação do cadastro com (especialidade, valor, e tipo de pagamento com cartao tendo opcoes de parcelamento)
+        - revisão e confirmação do cadastro
+        - tela de conclusão (personalizada)
+            - perguntar se deseja cadastrar outros profissionais
+            - listar profissionais cadastrados
+
+    - a tela deve manter os campos preenchidos ao voltar no botão
+    - deve ter versão mobile & versão desktop
+    - na primeira tela conferir se medico já está cadastrado (consulta api)
+    - todos os campos são obrigatórios
+    - bootstrap 4 e Vue 2 serão usados
+    - fonte Comfortaa (titulos btns) Open Sans (demais)
+    - formatar e validar campos de cpf e celular
+    - nome 3 a 48 chars
+    - campo estado e cidade (consulta api)
+    - validar preço
+    - usar imagens providas (desktop)
+    - usar cores providas
+
+Componentes
+    - ComponenteAndroid
+    - ComponenteDesktop
+    - ComponenteTitulo
+    - ComponenteSubtitulo
+    - GetProfissionais
+    - ConfirmacaoApiProfissionais
+    - FormGroup
+    - FormNome
+    - FormCPF
+    - FormCelular
+    - GetApiEstado
+    - FormEstado
+    - GetApiCidade
+    - FormCidade
+    - BarraDeProgresso
+    - BotaoProximo
+    - BotaoAnterior
+    - Get
+    - FormEspecialidade
+    - FormPreco
+    - FormPagamento
+    - FormPagementoCartao
+
+    - BotaoCadastrar
+    - BotaoEditarCadastro
+
+    - BotaoCadastrarNovos
+    - BotaoMostrarCadastrados
+
+    - ListarCadastrados
+
+Duvidas dev
+    - para fazer responsivo utilizar bootstrap md sm ou lg ou conferir user agent

@@ -5,8 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+      
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
+  <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Open+Sans:wght@300&display=swap');
+    
+    body{
+      font-family: 'Open Sans', sans-serif !important;
+      background-color: #FFE766 !important;
+      padding: 0;
+      margin: 0;
+    }
+    h1 {
+      font-family: 'Comfortaa', cursive !important;
+      color: #483698;
+      
+    }
+
+    button{
+      font-family: 'Comfortaa', cursive !important;
+    }
+
+    /* Remover botão que fica a direita do input type="number" */
+    /* Chrome, Safari */
+    input::-webkit-outer-spin-button, 
+    input::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+        margin: 0
+    }
+    /* Firefox */
+    input[type=number]{
+        -moz-appearance: textfield;
+    }
+
+
+  </style>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
