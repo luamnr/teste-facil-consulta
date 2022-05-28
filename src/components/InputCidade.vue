@@ -78,7 +78,7 @@ export default {
 
     watch:{
         cidadeSelecionada(novaCidade){
-            console.log(novaCidade)
+            console.log("Watch cidade"+novaCidade)
             localStorage.cidade = novaCidade
         },
 

@@ -1,10 +1,7 @@
 <template>
   <div id="app">
 
-      <a style="color:#483698;text-decoration: none; font-size: 2em" href="/"> &lt; </a>
-      
       <router-view></router-view>
-    
   
   </div>
 </template>
@@ -19,7 +16,7 @@ export default ({
     }
   },
   updated(){
-    console.log(this.paginaAnterior)
+    console.log("pagina anterior: "+this.paginaAnterior)
   },
   beforeRouteEnter(to, from, ){
     this.paginaAnterior = from
@@ -30,11 +27,12 @@ export default ({
 
 <style>
 #app{
-  padding-top: 2%;
-  margin: auto;
-  justify-content: center;
-  display: flex;
+  height: 100%;
   width: 100%;
+  /* padding-top: 2%;
+  display: flex;
+  justify-content: center; */
+
 
 }
 
