@@ -9,7 +9,7 @@
             <b-col class="colunaForm" cols="12" sm="12" md="6" xl="6">
                 <slot name="formularios"></slot>
             </b-col>
-                                                                                      <!-- d-none d-sm-none d-xl-block -->
+
             <b-col offset="1" cols="12" sm="0" md="5" xl="5" class="d-none d-md-block">
                 <slot name="foto"></slot>
             </b-col>

@@ -17,7 +17,7 @@
 <script>
 
 import InputBase from "./InputBase.vue"
-import api from "../services/Api"
+import api from "../api"
 
 
 export default {

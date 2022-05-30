@@ -1,5 +1,5 @@
 <template>
-<InputBase label="Telefone">
+<InputBase label="Telefone*">
     <b-form-input
         v-model="telefone"
         v-mask="'(##) # ####-####'"
@@ -9,17 +9,26 @@
         required
     >
     </b-form-input>
-    <div class="erro" v-if="!$v.telefone.required && invalido">Campo obrigatório!</div>
-    <div class="erro" v-if="!$v.telefone.minLength && invalido">Número inválido</div>
-    <div class="erro" v-if="!$v.telefone.maxLength && invalido">Número inválido</div>
+    <div class="erro" v-if="!$v.telefone.required && $v.dirty">Campo obrigatório!</div>
+    <div class="erro" v-else-if="!$v.telefone.length && $v.dirty">Número inválido</div>
 
 </InputBase>
 </template>
 
 <script>
-import { required, minLength, maxLength } from "vuelidate/lib/validators"
+import { required,  } from "vuelidate/lib/validators"
 import InputBase from "./InputBase.vue"
 import store from "../store"
+
+// testar melhor lenghtvalidator
+function lenghtValidator (valor){
+    if (valor.length == 16){
+        return false
+    }
+    else{
+        return true
+    }
+}
 
 export default {
     name: "InputTelefone",
@@ -42,6 +51,7 @@ export default {
             store.state.telefone = novoTelefone
         }
     },
+
     computed: {
         invalido () {
             if (this.$v.$dirty && this.$v.$invalid) {
@@ -49,13 +59,20 @@ export default {
             }
 
             return '';
-        }
+        },
+
     },
+
     validations:{
         telefone : {
             required,
-            minLength: minLength(16),
-            maxLength: maxLength(16),
+            length: lenghtValidator
+            // Length: (value) => {
+            //     if (value.length == 16){
+            //         return true
+            //     }
+            //     else false
+            // }
         }    
     }
 

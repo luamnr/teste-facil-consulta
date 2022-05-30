@@ -29,6 +29,7 @@ export default {
             ],
         }
     },
+    
     computed:{
         opcoesCartao(){
             return this.selecionado == 3 ? true : false

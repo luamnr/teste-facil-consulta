@@ -10,7 +10,7 @@
                 <b-form-select-option value="" disabled>Selecione</b-form-select-option>
             </template>
         </b-form-select>
-            <div class="erro" v-if="!$v.cidadeSelecionada.required && invalido">Campo obrigatório!</div>
+            <div class="erro" v-if="!$v.cidadeSelecionada.required && $v.dirty">Campo obrigatório!</div>
     </InputBase>
 
 </template>
@@ -18,7 +18,7 @@
 <script>
 import store from "../store"
 import InputBase from "./InputBase.vue"
-import api from "../services/Api"
+import api from "../api"
 import { required } from "vuelidate/lib/validators"
 
 
@@ -30,14 +30,16 @@ export default {
             cidadeSelecionada: "",
             cidades: [],
             estadoId: "",
+            carregado: false
         }
     },
 
     async created(){
 
-        this.estadoId = store.state.estado
-        this.requestCidades()
-        this.cidadeSelecionada = store.state.cidade
+        // this.estadoId = store.state.estado
+        // this.requestCidades()
+        // console.log(`teste${this.estadoId}`)
+        // this.cidadeSelecionada = store.state.cidade
 
         this.$root.$on("reloadCidades", ()=>{
             if (store.state.estado != this.estadoId){
@@ -68,21 +70,23 @@ export default {
             let tempCidades = []
 
             const response = await api.get(`/cidades?estadoId=${this.estadoId}`)
-            console.log(this.cidadeSelecionada)
-
             response.data.forEach(element => {
                 tempCidades.push({value: element.id,
                                 text: element.nome})
             });
             this.cidades = tempCidades
+            this.carregado = true
         }
     },
 
     watch:{
         cidadeSelecionada(novaCidade){
-            this.$v.$touch()
-            console.log("Watch cidade"+novaCidade)
-            store.state.cidade = novaCidade
+            // if (!this.carregado){
+            //         return
+            //     }
+                this.$v.$touch()
+                console.log("Watch cidade"+novaCidade)
+                store.state.cidade = novaCidade
         },
     },
 

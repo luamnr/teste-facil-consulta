@@ -24,19 +24,19 @@ import InputBase from "./InputBase.vue"
 
 export default {
     name: "InputValor",
+
     data(){
         return{
         preco: 0.0,
         money: {
                 decimal: ',',
-                // thousands: '.',
-                // prefix: 'R$ ',
                 // suffix: '',
                 precision: 2,
                 masked: false
             }
         }
     },
+
     components:{
         InputBase,
     }
