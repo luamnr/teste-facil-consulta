@@ -10,7 +10,7 @@
                 <b-form-select-option value="" disabled>Selecione</b-form-select-option>
             </template>
         </b-form-select>
-            <div class="erro" v-if="!$v.estadoSelecionado.required && $v.dirty">Campo obrigatório!</div>
+            <div class="erro" v-if="!$v.estadoSelecionado.required && $v.$dirty">Campo obrigatório!</div>
     </InputBase>
 
 </template>
@@ -21,7 +21,7 @@ import InputBase from "./InputBase.vue"
 import api from "../api"
 import store from "../store"
 import { required } from "vuelidate/lib/validators"
-
+import {submitLockReleaser } from "../utils"
 
 export default {
     name: "InputEstado",
@@ -30,7 +30,7 @@ export default {
         return{
             estadoSelecionado: "",
             estados: [],
-            // carregado: false
+            carregado: false
         }
     },
 
@@ -47,6 +47,8 @@ export default {
             this.estados.push({value: element.id,
                                text: element.nome})
         });
+
+        this.carregado = true
 
     },
 
@@ -67,10 +69,14 @@ export default {
 
     watch:{
         estadoSelecionado(novoEstado){
-            this.$v.$touch()
-            store.state.estado = novoEstado
-            this.$root.$emit("reloadCidades")
-            this.$v.$reset()
+            if (this.carregado){
+                this.$v.$touch()
+                store.state.estado = novoEstado
+                this.$root.$emit("reloadCidades")
+                submitLockReleaser(this.$v.$invalid)
+                console.log(this.$v.form.nome)
+            }
+
 
         }
     },

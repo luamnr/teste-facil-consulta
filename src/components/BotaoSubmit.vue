@@ -1,17 +1,41 @@
 <template>
 
-    <b-button type="submit" class="form-control BotaoSubmit">
-        <router-link class="anchor" :to="local">PROXIMO</router-link>
+<div>
+    <b-button @click="mudarRota(local)" class="form-control BotaoSubmit">
+        PROXIMO
     </b-button>
+
+</div>
 
 </template>
 
 <script>
+
+import { getSubmitLocker, lockSubmitlocker } from '../utils'
+
 export default {
     name: "BotaoSubmit",
+ 
     props:[
         "local",
-    ]
+    ],
+
+    methods:{
+        mudarRota(local){
+
+            if (getSubmitLocker()){
+                console.log("lock ligado, algum form invalido")
+                return
+            }
+
+            console.log("lock desligado mandando pra outra rota")
+            this.$router.push(local)
+            lockSubmitlocker()
+
+            
+
+        }
+    }
 }
 </script>
 
@@ -22,8 +46,8 @@ export default {
     border-radius: 10px;
     border: 0;
 }
-.BotaoSubmit a{
+/* .BotaoSubmit a{
     color: white;
     text-decoration: none;
-}
+} */
 </style>

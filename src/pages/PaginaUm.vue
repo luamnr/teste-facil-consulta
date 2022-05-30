@@ -1,6 +1,6 @@
 <template>
 <div>
-  <a  href=""> &#60;</a>
+  <a @click="$router.go(-1)" > &#60;</a>
 
   <div class="conteudo">
     <CaixaPrincipal >

@@ -9,8 +9,8 @@
         required
     >
     </b-form-input>
-    <div class="erro" v-if="!$v.telefone.required && $v.dirty">Campo obrigatório!</div>
-    <div class="erro" v-else-if="!$v.telefone.length && $v.dirty">Número inválido</div>
+    <div class="erro" v-if="!$v.telefone.required && $v.$dirty">Campo obrigatório!</div>
+    <div class="erro" v-else-if="!$v.telefone.length && $v.$dirty">Número inválido</div>
 
 </InputBase>
 </template>
@@ -19,36 +19,37 @@
 import { required,  } from "vuelidate/lib/validators"
 import InputBase from "./InputBase.vue"
 import store from "../store"
+import {telefoneLenghtValidator} from "../utils"
+import {submitLockReleaser} from "../utils"
 
-// testar melhor lenghtvalidator
-function lenghtValidator (valor){
-    if (valor.length == 16){
-        return false
-    }
-    else{
-        return true
-    }
-}
 
 export default {
     name: "InputTelefone",
+    
     data(){
         return{
-            telefone: ""
+            telefone: "",
+            carregado: false
         }
     },
+
     components:{
         InputBase
     },
 
     mounted(){
         this.telefone = store.state.telefone
+        this.carregado = true
     },
 
     watch:{
         telefone(novoTelefone){
-            this.$v.$touch()
-            store.state.telefone = novoTelefone
+            if (this.carregado){
+                this.$v.$touch()
+                store.state.telefone = novoTelefone
+                console.log(this.$v.$invalid)
+                submitLockReleaser(this.$v.$invalid)
+            }
         }
     },
 
@@ -57,22 +58,15 @@ export default {
             if (this.$v.$dirty && this.$v.$invalid) {
                 return 'erro';
             }
-
             return '';
         },
-
     },
 
     validations:{
         telefone : {
             required,
-            length: lenghtValidator
-            // Length: (value) => {
-            //     if (value.length == 16){
-            //         return true
-            //     }
-            //     else false
-            // }
+            length: telefoneLenghtValidator
+
         }    
     }
 

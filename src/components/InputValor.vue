@@ -19,20 +19,37 @@
 </template>
 
 <script>
-import InputBase from "./InputBase.vue"
 
+import InputBase from "./InputBase.vue"
+import store from "../store"
+import {submitLockReleaser} from "../utils"
 
 export default {
     name: "InputValor",
 
     data(){
         return{
-        preco: 0.0,
-        money: {
-                decimal: ',',
-                // suffix: '',
-                precision: 2,
-                masked: false
+            preco: 0.0,
+            carregado: false,
+            money: {
+                    decimal: ',',
+                    precision: 2,
+                    masked: false
+                },
+        }
+    },
+
+    mounted(){
+        this.preco = store.state.preco
+        this.carregado = true
+    },
+
+    watch:{
+        nome(novoPreco){
+            if (this.carregado){
+                this.$v.$touch()
+                store.state.preco = novoPreco
+                submitLockReleaser(this.$v.$invalid)
             }
         }
     },

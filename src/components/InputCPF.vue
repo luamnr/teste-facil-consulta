@@ -18,7 +18,7 @@
 
 import InputBase from "./InputBase.vue"
 import store from "../store"
-
+import { required } from "vuelidate/lib/validators"
 
 export default {
     name: "InputCPF",
@@ -37,9 +37,18 @@ export default {
 
     watch:{
         cpf(novoCPF){
-            store.state.cpf = novoCPF 
+            if (this.carregado){
+                store.state.cpf = novoCPF 
+            }
         }
-    }
+    },
+
+    validations:{
+        cpf : {
+            required,
+
+        }
+    } 
 }
 </script>
 

@@ -39,7 +39,7 @@
             <br>
             <b-row class="rowForm" align-self="center">
                 <b-col cols="11">
-                    <BotaoSubmit local="/pagina2"/>
+                    <BotaoSubmit :local="{path : 'pagina2'}"/>
                 </b-col>
             </b-row>
 

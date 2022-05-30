@@ -11,6 +11,8 @@ const store = {
         parcelamento: []
     },
 
+    submitLocker: true,
+
 }
 
 export default store
