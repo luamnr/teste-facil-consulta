@@ -3,13 +3,14 @@
     <InputBase label="Estado*" >
         <b-form-select v-model="estadoSelecionado" 
         :options="estados"
-        class="form-control"
+        :class="invalido"
         required
         >
             <template #first>
                 <b-form-select-option value="" disabled>Selecione</b-form-select-option>
             </template>
         </b-form-select>
+            <div class="erro" v-if="!$v.estadoSelecionado.required && invalido">Campo obrigatório!</div>
     </InputBase>
 
 </template>
@@ -18,6 +19,8 @@
 
 import InputBase from "./InputBase.vue"
 import api from "../services/Api"
+import store from "../store"
+import { required } from "vuelidate/lib/validators"
 
 
 export default {
@@ -30,11 +33,13 @@ export default {
         }
     },
 
+    components:{
+        InputBase
+    },
+
     async created(){
 
-        if (localStorage.estado){
-            this.estadoSelecionado = localStorage.estado
-        }
+        this.estadoSelecionado = store.state.estado
 
         const response = await api.get("/estados")
         response.data.forEach(element => {
@@ -44,16 +49,30 @@ export default {
 
     },
 
-    components:{
-        InputBase
+    computed: {
+        invalido () {
+            if (this.$v.$dirty && this.$v.$invalid) {
+                return 'form-control erro';
+            }
+
+            return 'form-control';
+        }
     },
 
     watch:{
         estadoSelecionado(novoEstado){
-            localStorage.estado = novoEstado
+            this.$v.$touch()
+            store.state.estado = novoEstado
             this.$root.$emit("reloadCidades")
         }
+    },
+
+    validations:{
+        estadoSelecionado : {
+            required,
+        }
     }
+
 }
 </script>
 

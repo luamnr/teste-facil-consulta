@@ -5,28 +5,25 @@
         <b-form class="areaForm">
             <b-row class="rowForm">
                 <b-col cols="10" sm="10" md="12" lg="12">
-                    <InputNome/>
+                    <InputEspecialidade/>
                 </b-col>
             </b-row>
             <b-row class="rowForm">
                 <b-col cols="8" sm="8" md="9" lg="8">
-                    <InputCPF/>
+                    <InputValor/>
                 </b-col>
             </b-row>
 
             <b-row class="rowForm">
                 <b-col cols="5" sm="5" md="6" lg="6" >
-                    <InputEstado/>
+                    <InputFormaPagamento/>
                 </b-col>
 
             </b-row>
             <br>
             <b-row lass="rowForm" align-h="around">
                 <b-col cols="6">
-                    <b-progress height="2rem" max="2" >
-                        <b-progress-bar value="2">
-                        </b-progress-bar>
-                    </b-progress>
+                    <BarraDeProgresso value="2"/>
                 </b-col>
                 <b-col cols="6">
                     1 de 2
@@ -47,19 +44,21 @@
 
 <script>
 
-import InputNome from "./InputNome"
-import InputCPF from "./InputCPF"
 import BotaoSubmit from "./BotaoSubmit"
-import InputEstado from "./InputEstado"
+import InputFormaPagamento from "./InputFormaPagamento"
+import BarraDeProgresso from "./BarraDeProgresso"
+import InputValor from "./InputValor"
+import InputEspecialidade from "./InputEspecialidade"
 
 export default {
     name: "FormulariosPaginaUm",
 
     components:{
-        InputNome,
-        InputCPF,
         BotaoSubmit,
-        InputEstado,
+        InputFormaPagamento,
+        BarraDeProgresso,
+        InputValor,
+        InputEspecialidade,
     }
 }
 </script>

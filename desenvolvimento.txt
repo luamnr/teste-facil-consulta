@@ -21,8 +21,7 @@ software cadastro médico
     - usar cores providas
 
 Componentes
-    - ComponenteAndroid
-    - ComponenteDesktop
+
     - ComponenteTitulo
     - ComponenteSubtitulo
     - GetProfissionais
@@ -31,7 +30,6 @@ Componentes
     - FormNome
     - FormCPF
     - FormCelular
-    - GetApiEstado
     - FormEstado
     - GetApiCidade
     - FormCidade
@@ -51,6 +49,3 @@ Componentes
     - BotaoMostrarCadastrados
 
     - ListarCadastrados
-
-Duvidas dev
-    - para fazer responsivo utilizar bootstrap md sm ou lg ou conferir user agent

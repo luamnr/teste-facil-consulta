@@ -23,6 +23,9 @@ export default {
         border-color: #483698 !important;
         box-shadow: none !important;
     }
-
+    .erro{
+        border-color: red !important;
+        color: red !important;
+    }
 
 </style>

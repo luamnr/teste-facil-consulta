@@ -3,21 +3,23 @@
     <InputBase label="Cidade*" >
         <b-form-select v-model="cidadeSelecionada" 
         :options="cidades"
-        class="form-control"
+        :class="invalido"
         required
         >
             <template #first>
                 <b-form-select-option value="" disabled>Selecione</b-form-select-option>
             </template>
         </b-form-select>
+            <div class="erro" v-if="!$v.cidadeSelecionada.required && invalido">Campo obrigatório!</div>
     </InputBase>
 
 </template>
 
 <script>
-
+import store from "../store"
 import InputBase from "./InputBase.vue"
 import api from "../services/Api"
+import { required } from "vuelidate/lib/validators"
 
 
 export default {
@@ -26,46 +28,46 @@ export default {
     data(){
         return{
             cidadeSelecionada: "",
-            cidades: []
+            cidades: [],
+            estadoId: "",
         }
     },
 
     async created(){
 
+        this.estadoId = store.state.estado
+        this.requestCidades()
+        this.cidadeSelecionada = store.state.cidade
+
         this.$root.$on("reloadCidades", ()=>{
-            this.cidadeSelecionada = ""
-            this.requestCidades()
+            if (store.state.estado != this.estadoId){
+                this.estadoId = store.state.estado
+                this.cidadeSelecionada = ""
+                this.requestCidades()
+            }
         })
-
-
-        // if (localStorage.cidade){
-        //     this.cidadeSelecionada = localStorage.cidade
-        // }
-
-        // let estadoId = localStorage.estado
-
-        // const response = await api.get(`/cidades?estadoId=${estadoId}`)
-        // console.log(this.cidadeSelecionada)
-        // response.data.forEach(element => {
-        //     this.cidades.push({value: element.id,
-        //                        text: element.nome})
-        // });
     },
 
     components:{
         InputBase
     },
     
-    methods:{
-        async requestCidades(){
-            if (localStorage.cidade){
-                this.cidadeSelecionada = localStorage.cidade
+    computed: {
+        invalido () {
+            if (this.$v.$dirty && this.$v.$invalid) {
+                return 'form-control erro';
             }
 
-            let estadoId = localStorage.estado
+            return 'form-control';
+        }
+    },
+
+    methods:{
+        async requestCidades(){
+
             let tempCidades = []
 
-            const response = await api.get(`/cidades?estadoId=${estadoId}`)
+            const response = await api.get(`/cidades?estadoId=${this.estadoId}`)
             console.log(this.cidadeSelecionada)
 
             response.data.forEach(element => {
@@ -78,10 +80,16 @@ export default {
 
     watch:{
         cidadeSelecionada(novaCidade){
+            this.$v.$touch()
             console.log("Watch cidade"+novaCidade)
-            localStorage.cidade = novaCidade
+            store.state.cidade = novaCidade
         },
+    },
 
+    validations:{
+        cidadeSelecionada : {
+            required,
+        }
     }
 }
 </script>

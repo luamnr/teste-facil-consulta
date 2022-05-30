@@ -14,8 +14,11 @@
 </template>
 
 <script>
+// import store from "../store"
 
 import InputBase from "./InputBase.vue"
+import store from "../store"
+
 
 export default {
     name: "InputCPF",
@@ -26,6 +29,16 @@ export default {
     },
     components:{
         InputBase
+    },
+
+    mounted(){
+        this.cpf = store.state.cpf
+    },
+
+    watch:{
+        cpf(novoCPF){
+            store.state.cpf = novoCPF 
+        }
     }
 }
 </script>

@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap/scss/bootstrap.scss'
 import router from './router'
+import money from 'v-money'
+import Vuelidate from 'vuelidate'
 
 //TODO mudar depois
 Vue.config.productionTip = false
@@ -14,6 +16,9 @@ Vue.config.productionTip = false
 
 Vue.use(VueMask);
 Vue.use(BootstrapVue)
+Vue.use(money, {precision: 2})
+Vue.use(Vuelidate)
+
 
 new Vue({
   router,

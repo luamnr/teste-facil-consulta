@@ -6,7 +6,6 @@
         </b-row>
 
         <b-row>
-
             <b-col class="colunaForm" cols="12" sm="12" md="6" xl="6">
                 <slot name="formularios"></slot>
             </b-col>
@@ -14,7 +13,6 @@
             <b-col offset="1" cols="12" sm="0" md="5" xl="5" class="d-none d-md-block">
                 <slot name="foto"></slot>
             </b-col>
-
         </b-row>
     </div>
 </template>
@@ -51,9 +49,6 @@ export default {
     align-content: left;
     padding-left: 0;
 }
-.progress-bar{
-    background-color: #483698 ;
-    width: 70% !important;
-}
+
 
 </style>

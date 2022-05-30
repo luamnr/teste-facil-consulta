@@ -3,16 +3,24 @@
     <b-form-input
         v-model="nome"
         placeholder="Digite o nome completo"
-        class="testes"
-        required
+        :class="invalido" 
     ></b-form-input>
+
+    <div class="erro" v-if="!$v.nome.required && invalido">Campo obrigatório!</div>
+    <div class="erro" v-if="!$v.nome.minLength && invalido">Nome muito pequeno!</div>
+    <div class="erro" v-if="!$v.nome.maxLength && invalido">Nome muito grande!</div>
+
+
     </InputBase>
 
 
 </template>
 
 <script>
+
+import { required, minLength, maxLength } from "vuelidate/lib/validators"
 import InputBase from "./InputBase.vue"
+import store from "../store"
 
 export default {
     nome: "InputNome",
@@ -24,20 +32,33 @@ export default {
     components:{
         InputBase
     },
-    created(){
-        if (localStorage.nome){
-            this.nome = localStorage.nome
-        }
+    mounted(){
+        this.nome = store.state.nome
     },
     watch:{
         nome(novoNome){
-            localStorage.nome = novoNome 
-            console.log(novoNome)
+            this.$v.$touch()
+            store.state.nome = novoNome
+        }
+    },
+    computed: {
+        invalido () {
+            if (this.$v.$dirty && this.$v.$invalid) {
+                return 'erro';
+            }
+
+            return '';
+        }
+    },
+
+    validations:{
+        nome : {
+            required,
+            minLength: minLength(3),
+            maxLength: maxLength(45),
+
+
         }
     }
 }
 </script>
-
-<style scoped>
-
-</style>

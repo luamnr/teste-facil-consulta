@@ -30,10 +30,7 @@
             <br>
             <b-row lass="rowForm" align-h="around">
                 <b-col cols="6">
-                    <b-progress height="2rem" max="2" >
-                        <b-progress-bar value="2">
-                        </b-progress-bar>
-                    </b-progress>
+                    <BarraDeProgresso value="1"/>
                 </b-col>
                 <b-col cols="6">
                     1 de 2
@@ -60,6 +57,7 @@ import InputTelefone from "./InputTelefone"
 import BotaoSubmit from "./BotaoSubmit"
 import InputEstado from "./InputEstado"
 import InputCidade from "./InputCidade"
+import BarraDeProgresso from "./BarraDeProgresso"
 
 export default {
     name: "FormulariosPaginaUm",
@@ -70,7 +68,8 @@ export default {
         InputTelefone,
         BotaoSubmit,
         InputEstado,
-        InputCidade
+        InputCidade,
+        BarraDeProgresso
     }
 }
 </script>

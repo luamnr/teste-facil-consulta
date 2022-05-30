@@ -16,14 +16,14 @@ export default {
 </script>
 
 <style scoped>
-    .BotaoSubmit{
+.BotaoSubmit{
     background-color: #483698;
     font-size: 1.7em;
     border-radius: 10px;
     border: 0;
-    }
-    .BotaoSubmit a{
-        color: white;
-        text-decoration: none;
-    }
+}
+.BotaoSubmit a{
+    color: white;
+    text-decoration: none;
+}
 </style>

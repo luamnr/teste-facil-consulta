@@ -10,7 +10,7 @@
       <FormulariosPaginaDois slot="formularios"/>
       
       <MolduraImagem slot="foto">
-        <img class="imagem" src="../assets/desktop-pagina-1.png" >
+        <img class="imagem" src="../assets/desktop-pagina-2.png" >
       </MolduraImagem> 
     </CaixaPrincipal>
   </div>

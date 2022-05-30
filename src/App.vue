@@ -1,26 +1,32 @@
 <template>
   <div id="app">
-
       <router-view></router-view>
-  
   </div>
 </template>
 
 <script>
 
+import store from "./store"
+
 export default ({
   name: "App",
   data() {
     return{
-      paginaAnterior : null
+      paginaAnterior : null,
     }
   },
-  updated(){
-    console.log("pagina anterior: "+this.paginaAnterior)
+
+  created(){
+    if (localStorage.state){
+      store.state = JSON.parse(localStorage.state)
+    }
   },
-  beforeRouteEnter(to, from, ){
-    this.paginaAnterior = from
+
+  beforeUpdate(){
+    localStorage.state = JSON.stringify(store.state)
+    
   }
+  
 })
 </script>
 
