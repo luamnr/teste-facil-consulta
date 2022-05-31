@@ -20,7 +20,7 @@ import store from "../store"
 import InputBase from "./InputBase.vue"
 import api from "../api"
 import { required } from "vuelidate/lib/validators"
-import {submitLockReleaser} from "../utils"
+import {submitLockControl} from "../utils"
 
 export default {
     name: "InputCidade",
@@ -30,7 +30,6 @@ export default {
             cidadeSelecionada: "",
             cidades: [],
             estadoId: "",
-            carregado: false
         }
     },
 
@@ -70,17 +69,14 @@ export default {
                                 text: element.nome})
             });
             this.cidades = tempCidades
-            this.carregado = true
         }
     },
 
     watch:{
         cidadeSelecionada(novaCidade){
-            if (this.carregado){
-                this.$v.$touch()
-                store.state.cidade = novaCidade
-                submitLockReleaser(this.$v.$invalid)
-            }
+            this.$v.$touch()
+            store.state.cidade = novaCidade
+            submitLockControl(this.$v.$invalid)
         },
     },
 

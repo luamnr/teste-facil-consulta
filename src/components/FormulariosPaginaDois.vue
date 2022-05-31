@@ -26,7 +26,7 @@
                     <BarraDeProgresso value="2"/>
                 </b-col>
                 <b-col cols="6">
-                    1 de 2
+                    2 de 2
                 </b-col>
             </b-row>
             <br>
@@ -51,7 +51,7 @@ import InputValor from "./InputValor"
 import InputEspecialidade from "./InputEspecialidade"
 
 export default {
-    name: "FormulariosPaginaUm",
+    name: "FormulariosPaginaDois",
 
     components:{
         BotaoSubmit,

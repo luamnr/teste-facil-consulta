@@ -21,7 +21,7 @@
 import InputBase from "./InputBase.vue"
 import api from "../api"
 import { required } from "vuelidate/lib/validators"
-import {submitLockReleaser} from "../utils"
+import {submitLockControl} from "../utils"
 import store from "../store"
 
 export default {
@@ -31,7 +31,6 @@ export default {
         return{
             especialidadeSelecionado: "",
             especialidades: [],
-            carregado: false
         }
     },
 
@@ -42,11 +41,13 @@ export default {
             this.especialidades.push({value: element.id,
                             text: element.nome})
         });
-        this.carregado = true
     },
 
     mounted(){
-        this.especialidadeSelecionado = store.state.especialidade
+        if (store.state.especialidade){
+            this.especialidadeSelecionado = store.state.especialidade
+
+        }
     },
 
     computed: {
@@ -59,17 +60,12 @@ export default {
         }
     },
 
-    methods:{
-
-    },
-
     watch:{
         especialidadeSelecionado(novaEspecialidade){
             this.$v.$touch()
-            if (this.carregado){
-                store.state.especialidade = novaEspecialidade
-                submitLockReleaser(this.$v.$invalid)
-            }
+            store.state.especialidade = novaEspecialidade
+            submitLockControl(this.$v.$invalid)
+            
         },
     },
 

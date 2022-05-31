@@ -4,13 +4,12 @@
 
   <div class="conteudo">
     <CaixaPrincipal >
-        <h1 slot="tituloDaCaixa">Sobre o atendimento</h1>
-        <h3 slot="tituloDaCaixa">Detalhes do atendimento</h3>
+        <h1 slot="tituloDaCaixa">Revisão do cadastro</h1>
 
-      <FormulariosPaginaDois slot="formularios"/>
+      <ConteudoPaginaTres slot="formularios"/>
       
       <MolduraImagem slot="foto">
-        <img class="imagem" src="../assets/desktop-pagina-2.png" >
+        <img class="imagem" src="../assets/desktop-pagina-3.png" >
       </MolduraImagem> 
     </CaixaPrincipal>
   </div>
@@ -20,15 +19,15 @@
 <script>
 
 import CaixaPrincipal from "../components/CaixaPrincipal"
-import FormulariosPaginaDois from "../components/FormulariosPaginaDois"
+import ConteudoPaginaTres from "../components/ConteudoPaginaTres"
 import MolduraImagem from "../components/MolduraImagem"
 
 export default {
-  name: 'PaginaUm',
+  name: 'PaginaTres',
 
   components:{
     CaixaPrincipal,
-    FormulariosPaginaDois,
+    ConteudoPaginaTres,
     MolduraImagem
   },
 

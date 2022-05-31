@@ -36,18 +36,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.max_size{
-  width: 100%;
-  height: 100%;
-}
-.conteudo{
-  
-  padding-top: 2%;
-  display: flex;
-  justify-content: center;
-  /* width: 100%; */
+<style >
 
-}
 
 </style>

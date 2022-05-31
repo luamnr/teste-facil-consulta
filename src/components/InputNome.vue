@@ -24,14 +24,13 @@
 import { required, minLength, maxLength } from "vuelidate/lib/validators"
 import InputBase from "./InputBase"
 import store from "../store"
-import {submitLockReleaser, lockSubmitlocker} from "../utils"
+import {submitLockControl } from "../utils"
 
 export default {
     nome: "InputNome",
     data(){
         return{
             nome: "",
-            carregado: false
         }
     },
 
@@ -40,19 +39,18 @@ export default {
     },
 
     mounted(){
-        this.nome = store.state.nome
-        this.carregado = true
-        lockSubmitlocker()
+        if (store.state.nome){
+            this.nome = store.state.nome
+
+        }
     },
 
     watch:{
         nome(novoNome){
-            console.log("watch nome")
-            if (this.carregado){
-                this.$v.$touch()
-                store.state.nome = novoNome
-                submitLockReleaser(this.$v.$invalid)
-            }
+            this.$v.$touch()
+            store.state.nome = novoNome
+            submitLockControl(this.$v.$invalid)
+            
         }
     },
 

@@ -20,7 +20,7 @@ import { required,  } from "vuelidate/lib/validators"
 import InputBase from "./InputBase.vue"
 import store from "../store"
 import {telefoneLenghtValidator} from "../utils"
-import {submitLockReleaser} from "../utils"
+import {submitLockControl} from "../utils"
 
 
 export default {
@@ -29,7 +29,6 @@ export default {
     data(){
         return{
             telefone: "",
-            carregado: false
         }
     },
 
@@ -38,18 +37,17 @@ export default {
     },
 
     mounted(){
-        this.telefone = store.state.telefone
-        this.carregado = true
+        if (store.state.telefone){
+            this.telefone = store.state.telefone
+        }
     },
 
     watch:{
         telefone(novoTelefone){
-            if (this.carregado){
-                this.$v.$touch()
-                store.state.telefone = novoTelefone
-                console.log(this.$v.$invalid)
-                submitLockReleaser(this.$v.$invalid)
-            }
+            this.$v.$touch()
+            store.state.telefone = novoTelefone
+            submitLockControl(this.$v.$invalid)
+
         }
     },
 

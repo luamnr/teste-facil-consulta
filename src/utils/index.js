@@ -1,7 +1,9 @@
 
 // Arquivo de utilidades para o resto do programa
+/* eslint-disable */
 
 import store from "../store"
+
 
 export function telefoneLenghtValidator (valor){
     if (valor.length == 16){
@@ -13,34 +15,87 @@ export function telefoneLenghtValidator (valor){
 }
 
 
-export function submitLockReleaser(valorValidacaoComponente){
+export const prepareCPF = (cpf)=>{
+    return cpf.replace(/[.]/g, "").replace("-", "")
+}
+
+
+export function testaCPF(cpf) {
+
+    var strCPF = prepareCPF(cpf)
+
+    var Soma;
+    var Resto;
+    Soma = 0;
+    if (strCPF == "00000000000") return false;
+
+    for (let i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+
+    Soma = 0;
+    for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+    return true;
+}
+
+
+export function precoMaior (preco) {
+
+
+    if (Number(preco.replace(/[,]/g, ".")) > 350){
+        return false
+    }
+    return true
+}
+
+
+export function precoMenor (preco) {
+
+    if (Number(preco.replace(/[,]/g, ".")) < 30){
+        return false
+    }
+    return true
+}
+
+
+
+export function submitLockControl(valorValidacaoComponente){
     let globalValidator = store.submitLocker
 
        // form valido e lock ativo, desativar lock
     if (!valorValidacaoComponente && globalValidator){
-        console.log("form valido e lock ativo, desativar lock")
         store.submitLocker = false
     }
         // form invalido e lock ativo, lock ativado
     else if (valorValidacaoComponente && globalValidator){
-        console.log("form invalido e lock ativo, lock ativado")
 
         store.submitLocker = true
     }
         // form invalido e lock inativo, ativar lock
     else if (valorValidacaoComponente && !globalValidator){
-        console.log("form invalido e lock inativo, ativar lock")
 
         store.submitLocker = true
     }
         // form valido e lock ativo desativar lock
     else{
-        console.log("form valido e lock ativo desativar lock")
 
         store.submitLocker = false
     }
 }
 
 
-export const getSubmitLocker = () => {return store.submitLocker}
+export const getSubmitLocker = () => {
+    return store.submitLocker
+}
+
+
 export const lockSubmitlocker = () => {store.submitLocker = true}
+
+
+export const releaseSubmitLocker = () => {store.submitLocker = false}

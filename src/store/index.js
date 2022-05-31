@@ -6,7 +6,7 @@ const store = {
         estado: "",
         cidade: "",
         especialidade: "",
-        preco: "",
+        preco: "0,00",
         pagamento: [],
         parcelamento: []
     },

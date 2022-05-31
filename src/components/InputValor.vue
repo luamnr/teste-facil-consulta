@@ -7,13 +7,15 @@
             :maxlength="6"
             v-model="preco" 
             type="text" 
-            placeholder="Valor"
+            placeholder="0,00"
             required
-            min="30"
-            max="350"
+            :class="invalido"
             >
             </b-form-input>
         </b-input-group>
+        <div class="erro" v-if="!$v.preco.required && $v.$dirty">Campo obrigatório!</div>
+        <div class="erro" v-else-if="!$v.preco.precoMenor && $v.$dirty">O preço está muito baixo!</div>
+        <div class="erro" v-else-if="!$v.preco.precoMaior && $v.$dirty">O preço está muito alto!</div>
 
     </InputBase>
 </template>
@@ -22,15 +24,16 @@
 
 import InputBase from "./InputBase.vue"
 import store from "../store"
-import {submitLockReleaser} from "../utils"
+import {submitLockControl} from "../utils"
+import { required,  } from "vuelidate/lib/validators"
+import { precoMenor, precoMaior } from "../utils"
 
 export default {
     name: "InputValor",
 
     data(){
         return{
-            preco: 0.0,
-            carregado: false,
+            preco: "0,00",
             money: {
                     decimal: ',',
                     precision: 2,
@@ -39,28 +42,50 @@ export default {
         }
     },
 
+    created(){
+        if (store.state.preco){
+            this.preco = store.state.preco
+        }
+        
+    },
+
     mounted(){
-        this.preco = store.state.preco
-        this.carregado = true
     },
 
     watch:{
-        nome(novoPreco){
-            if (this.carregado){
-                this.$v.$touch()
-                store.state.preco = novoPreco
-                submitLockReleaser(this.$v.$invalid)
+        preco(novoPreco){
+            this.$v.$touch()
+            store.state.preco = novoPreco
+            submitLockControl(this.$v.$invalid)
+        }
+    },
+
+    computed: {
+        invalido () {
+
+            if (this.$v.$dirty && this.$v.$invalid) {
+                return 'erro';
             }
+            return '';
         }
     },
 
     components:{
         InputBase,
+    },
+
+    validations:{
+        preco:{
+            required,
+            precoMenor,
+            precoMaior
+
+        }
     }
 }
 </script>
 
-<style>
+<style scoped>
 .input-group-text, .input-group-prepend{
     background-color: #483698;
     color: white;

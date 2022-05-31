@@ -18,17 +18,18 @@ export default {
  
     props:[
         "local",
+
+        // implementar ele ficar no modo cadastro??
+        "ficaramarelo??"
     ],
 
     methods:{
         mudarRota(local){
 
             if (getSubmitLocker()){
-                console.log("lock ligado, algum form invalido")
                 return
             }
 
-            console.log("lock desligado mandando pra outra rota")
             this.$router.push(local)
             lockSubmitlocker()
 

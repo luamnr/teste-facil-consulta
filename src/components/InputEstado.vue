@@ -21,7 +21,7 @@ import InputBase from "./InputBase.vue"
 import api from "../api"
 import store from "../store"
 import { required } from "vuelidate/lib/validators"
-import {submitLockReleaser } from "../utils"
+import {submitLockControl } from "../utils"
 
 export default {
     name: "InputEstado",
@@ -30,7 +30,6 @@ export default {
         return{
             estadoSelecionado: "",
             estados: [],
-            carregado: false
         }
     },
 
@@ -39,26 +38,21 @@ export default {
     },
 
     async created(){
-
-        this.estadoSelecionado = store.state.estado
-
+        
         const response = await api.get("/estados")
         response.data.forEach(element => {
             this.estados.push({value: element.id,
                                text: element.nome})
         });
 
-        this.carregado = true
-
+        if (store.state.estado){
+            this.estadoSelecionado = store.state.estado
+        }
+        
     },
-
-
 
     computed: {
         invalido() {
-            console.log(this.$v.$dirty)
-            console.log(this.$v.$invalid)
-            console.log(this.$v.estadoSelecionado.required)
             if (this.$v.$dirty && this.$v.$invalid) {
                 return 'form-control erro';
             }
@@ -69,15 +63,11 @@ export default {
 
     watch:{
         estadoSelecionado(novoEstado){
-            if (this.carregado){
-                this.$v.$touch()
-                store.state.estado = novoEstado
-                this.$root.$emit("reloadCidades")
-                submitLockReleaser(this.$v.$invalid)
-                console.log(this.$v.form.nome)
-            }
-
-
+            this.$v.$touch()
+            store.state.estado = novoEstado
+            this.$root.$emit("reloadCidades")
+            submitLockControl(this.$v.$invalid)
+            
         }
     },
 

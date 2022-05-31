@@ -35,10 +35,17 @@ export default ({
 #app{
   height: 100%;
   width: 100%;
-  /* padding-top: 2%;
-  display: flex;
-  justify-content: center; */
+}
 
+.max_size{
+  width: 100%;
+  height: 100%;
+}
+.conteudo{
+  
+  padding-top: 2%;
+  display: flex;
+  justify-content: center;
 
 }
 
