@@ -19,6 +19,24 @@ npm run build
 ```
 npm run lint
 ```
+---
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Project setup docker
+```
+npm install
+```
+
+## Preparar os arquivos para produção
+```
+npm run build
+```
+
+## Criar o container configurado com nginx
+```
+docker build -t facil-consulta:1.0.0 .
+```
+
+## Executar o container
+```
+docker run -p 54321:54321 -d --name facil-consulta facil-consulta:1.0.0
+```

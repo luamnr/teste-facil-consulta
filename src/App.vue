@@ -7,6 +7,7 @@
 <script>
 
 import store from "./store"
+import { getMedicos } from "./utils"
 
 export default ({
   name: "App",
@@ -16,11 +17,14 @@ export default ({
     }
   },
 
-  created(){
+  async created(){
     if (localStorage.state){
       store.state = JSON.parse(localStorage.state)
-
-
+    }
+    else{
+      let medicos = await getMedicos()
+      console.log(medicos)
+      store.state.todosMedicos = medicos
     }
   },
 

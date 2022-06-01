@@ -5,12 +5,15 @@
         :maxlength="14"
         v-model="cpf" 
         type="text" 
+        pattern="\d*"
+        inputmode="numeric"
         :class="invalido"
         placeholder="Digite um cpf"
         required
         >
         </b-form-input>
         <div class="erro" v-if="!$v.cpf.required && $v.$dirty">Campo obrigatório!</div>
+        <div class="erro" v-else-if="!$v.cpf.cpfCadastrado && $v.$dirty">CPF já cadastrado!</div>
         <div class="erro" v-else-if="!$v.cpf.testaCPF && $v.$dirty">CPF inválido!</div>
 
 
@@ -25,7 +28,7 @@
 import InputBase from "./InputBase.vue"
 import store from "../store"
 import { required } from "vuelidate/lib/validators"
-import {submitLockControl, testaCPF } from "../utils"
+import {submitLockControl, testaCPF, cpfCadastrado } from "../utils"
 
 
 export default {
@@ -66,6 +69,7 @@ export default {
     validations:{
         cpf : {
             required,
+            cpfCadastrado: cpfCadastrado,
             testaCPF : testaCPF
 
         }

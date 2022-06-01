@@ -60,7 +60,7 @@ import InputCidade from "../components/InputCidade";
 import BarraDeProgresso from "../components/BarraDeProgresso";
 
 export default {
-    name: "FormulariosPaginaUm",
+    name: "ConteudoPaginaUm",
 
     components:{
         InputNome,

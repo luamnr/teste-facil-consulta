@@ -9,6 +9,8 @@
             type="text" 
             placeholder="0,00"
             required
+            inputmode="numeric"
+            pattern="\d*"
             :class="invalido"
             >
             </b-form-input>

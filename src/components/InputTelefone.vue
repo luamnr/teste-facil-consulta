@@ -7,6 +7,10 @@
         maxLength="16"
         placeholder="(00) 0 0000-0000"
         required
+        inputmode="numeric"
+        pattern="\d*"
+
+
     >
     </b-form-input>
     <div class="erro" v-if="!$v.telefone.required && $v.$dirty">Campo obrigatório!</div>

@@ -35,7 +35,6 @@ export default {
 
     async created(){
 
-        
         if (store.state.cidade && store.state.estado){
             this.estadoId = store.state.estado
             this.requestCidades()
@@ -51,8 +50,6 @@ export default {
                 this.requestCidades()
             }
         })
-
-
     },
 
 
@@ -75,16 +72,23 @@ export default {
 
             let tempCidades = []
 
-            const response = await api.get(`/cidades?estadoId=${this.estadoId}`)
+            var response = await api.get(`/cidades?estadoId=${this.estadoId}`)
             response.data.forEach(element => {
                 tempCidades.push({value: element.id,
                                 text: element.nome})
             });
+
             this.cidades = tempCidades
          
-        if (store.state.cidades && store.state.cidades.length == 0){
-            store.state.cidades = this.cidades
-        }
+            if (store.state.cidades && store.state.cidades.length == 0){
+                response = await api.get("cidades")
+                response.data.forEach(element =>{
+                    store.state.cidades.push({
+                        value: element.id,
+                        text: element.nome
+                    })
+                })
+            }
         
         }
     },
@@ -100,7 +104,6 @@ export default {
     validations:{
         cidadeSelecionada : {
             required,
-            // minLength: minLength(3),
 
         }
     }

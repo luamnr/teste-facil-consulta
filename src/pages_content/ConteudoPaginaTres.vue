@@ -67,8 +67,8 @@
             <b-row class="rowForm" align-self="center">
 
                 <b-col cols="11">
-                    <BotaoSubmit textoBotao="CADASTRAR PROFISSIONAL" cor="amarelo" :cadastrar="true" :local="{path: 'pagina4'}"/>
-                    <BotaoSubmit textoBotao="Editar cadastro" cor="branco" :cadastrar="true" :local="{path: '/'}"/>
+                    <BotaoSubmit textoBotao="CADASTRAR PROFISSIONAL" cor="amarelo" :cadastrar="true" :local="{path: '/pagina4'}"/>
+                    <BotaoSubmit textoBotao="Editar cadastro" cor="branco" :local="{path: '/'}"/>
 
                 </b-col>
 
@@ -84,10 +84,10 @@
 
 import BotaoSubmit from "../components/BotaoSubmit";
 import store from "../store";
-import {releaseSubmitLocker} from "../utils";
+import {releaseSubmitLocker, getItemById} from "../utils";
 /* eslint-disable */
 export default {
-    name: "FormulariosPaginaTres",
+    name: "ConteudoPaginaTres",
 
     mounted(){
         releaseSubmitLocker();
@@ -98,15 +98,7 @@ export default {
             return store.state;
         },
 
-        getItemById(id, campo){
-            let temp
-                store.state[campo].forEach(element => {
-                    if (element.value == id){
-                        temp = element.text;
-                    }
-                });
-            return temp;
-        },
+        getItemById: getItemById,
 
         getItemsById(id, campo){
             let temp = [];

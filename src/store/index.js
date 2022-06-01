@@ -12,6 +12,7 @@ const store = {
         estados: [],
         cidades: [],
         especialidades: [],
+        todosMedicos: [],
     
         // poderiam estar vindo de uma api
         pagamentos: [],

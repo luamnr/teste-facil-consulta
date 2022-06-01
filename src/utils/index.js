@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import store from "../store";
+import api from "../api";
 
 
 export function telefoneLenghtValidator (valor){
@@ -12,6 +13,28 @@ export function telefoneLenghtValidator (valor){
     else{
         return false;
     }
+}
+
+
+export async function getMedicos(){
+    let medicos = []
+    const response = await api.get("/profissionais")
+    response.data.forEach(element => {
+        medicos.push(element);
+    });
+    return medicos;
+}
+
+
+export function cpfCadastrado(cpf){
+    let retorno = true
+    store.state.todosMedicos.forEach(element=>{
+        if(element.cpf == prepareCPF(cpf)){
+            retorno = false
+        }
+    });
+    return retorno
+
 }
 
 
@@ -131,4 +154,30 @@ export function validadorPagDois(){
     
 
     return true
+}
+
+
+export function getItemById(id, campo){
+    let temp
+        store.state[campo].forEach(element => {
+            if (element.value == id){
+                temp = element.text;
+            }
+        });
+    return temp;
+}
+
+
+export function limparStore(){
+
+    store.state.nome = ""
+    store.state.cpf = ""
+    store.state.telefone = ""
+    store.state.estado = ""
+    store.state.cidade = ""
+    store.state.especialidade = ""
+    store.state.preco = "0,00"
+    store.state.pagamento = []
+    store.state.parcelamento = []
+
 }

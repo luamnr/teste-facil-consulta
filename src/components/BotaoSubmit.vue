@@ -2,15 +2,15 @@
 
 <div>
 
-    <!-- <b-alert
+    <b-alert
       :show="dismissCountDown"
-      dismissible
+      class="alerta"
       fade
       variant="warning"
       @dismiss-count-down="countDownChanged"
     >
-      This alert will dismiss after {{ dismissCountDown }} seconds...
-    </b-alert> -->
+      Preencha todos os campos!
+    </b-alert>
     <b-button @click="mudarRota(local)" :class="colorClass">
         {{ textoBotao }}
     </b-button>
@@ -21,42 +21,63 @@
 
 <script>
 
-import { getSubmitLocker, lockSubmitlocker, validadorPagUm, validadorPagDois } from '../utils'
-// import store from "../store"
+
+import { getSubmitLocker, lockSubmitlocker, validadorPagUm, validadorPagDois, limparStore } from '../utils'
+import store from "../store"
 
 export default {
     name: "BotaoSubmit",
 
     data(){
         return { 
-            
+            dismissCountDown: 0
         }
     },
  
     props:[
         "local",
         "textoBotao",
-        "cor"
+        "cor",
+        "cadastrar"
     ],
 
     methods:{
         mudarRota(local){
 
-            console.log("if0")
+            if (this.cadastrar){
+                
+                this.$router.push(local)
+                
+                // gerar um id aleatorio depois do 20 possiveis 100
+                let medicoId = Math.floor(Math.random() * 100) + 20;
+                
+                store.state.todosMedicos.push({
+                    id: medicoId, 
+                    nome: store.state.nome, 
+                    cpf: store.state.cpf, 
+                    cidadeId: store.state.cidade,
+                    especialidadeId: store.state.especialidade
+                })
+
+                limparStore()
+
+            }
+
             if (getSubmitLocker()){
+                this.showAlert()
                 return
             }
 
-            console.log("if1")
             if (this.$router.currentRoute.path == "/"){
                 if (!validadorPagUm()){
+                    this.showAlert()
                     return
                 }
             }
 
-            console.log("if2")
             if (this.$router.currentRoute.path == "/pagina2"){
                 if (!validadorPagDois()){
+                    this.showAlert()
                     return
                 }
             }
@@ -65,6 +86,13 @@ export default {
             lockSubmitlocker()
         },
 
+        countDownChanged(dismissCountDown) {
+            this.dismissCountDown = dismissCountDown
+        },
+        
+        showAlert() {
+            this.dismissCountDown = 3
+        }
 
     },
 
@@ -103,6 +131,9 @@ export default {
 .branco{
     background-color: #F9F9F9;
     color:#483698
+}
+.alerta{
+    background-color: #FBDE40;
 }
 
 </style>

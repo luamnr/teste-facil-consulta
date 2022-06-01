@@ -1,6 +1,7 @@
 <template>
 <div>
-  <a @click="$router.push('/')" href=""> &#60;</a>
+
+  <BotaoVoltar rota="/"/>
 
   <div class="conteudo">
     <CaixaPrincipal >
@@ -22,6 +23,7 @@
 import CaixaPrincipal from "../components/CaixaPrincipal"
 import ConteudoPaginaDois from "../pages_content/ConteudoPaginaDois"
 import MolduraImagem from "../components/MolduraImagem"
+import BotaoVoltar from "../components/BotaoVoltar"
 
 export default {
   name: 'PaginaDois',
@@ -35,7 +37,8 @@ export default {
   components:{
     CaixaPrincipal,
     ConteudoPaginaDois,
-    MolduraImagem
+    MolduraImagem,
+    BotaoVoltar
   },
 
 

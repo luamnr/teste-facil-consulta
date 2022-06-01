@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import PaginaUm from '../pages/PaginaUm.vue'
 import PaginaDois from "../pages/PaginaDois"
 import PaginaTres from "../pages/PaginaTres"
+import PaginaQuatro from "../pages/PaginaQuatro"
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/pagina3",
     name: "pagina3",
     component: PaginaTres
+  },
+  {
+    path: "/pagina4",
+    name: "pagina4",
+    component: PaginaQuatro
   },
   {
     path: '/*',
