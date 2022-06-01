@@ -8,10 +8,19 @@ const store = {
         especialidade: "",
         preco: "0,00",
         pagamento: [],
-        parcelamento: []
+        parcelamento: [],
+        estados: [],
+        cidades: [],
+        especialidades: [],
+    
+        // poderiam estar vindo de uma api
+        pagamentos: [],
+        parcelamentos: [],
     },
 
     submitLocker: true,
+
+
 
 }
 

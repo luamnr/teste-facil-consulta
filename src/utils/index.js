@@ -45,10 +45,15 @@ export function testaCPF(cpf) {
 }
 
 
+const preparePreco = (preco) => {
+    return Number(preco.replace(/[,]/g, "."))
+}
+
+
 export function precoMaior (preco) {
 
 
-    if (Number(preco.replace(/[,]/g, ".")) > 350){
+    if (preparePreco(preco) > 350){
         return false
     }
     return true
@@ -57,7 +62,7 @@ export function precoMaior (preco) {
 
 export function precoMenor (preco) {
 
-    if (Number(preco.replace(/[,]/g, ".")) < 30){
+    if (preparePreco(preco) < 30){
         return false
     }
     return true
@@ -99,3 +104,31 @@ export const lockSubmitlocker = () => {store.submitLocker = true}
 
 
 export const releaseSubmitLocker = () => {store.submitLocker = false}
+
+
+export function validadorPagUm(){
+    let itens = ["nome", "cpf", "telefone", "estado", "cidade"]
+    for (let item in itens){
+        if (store.state[itens[item]].length == 0){
+            return false
+        }
+    }
+    return true
+}
+
+
+export function validadorPagDois(){
+
+    if(store.state.especialidade.length == 0){return false}
+
+    if(preparePreco(store.state.preco) < 30){return false}
+
+    if(store.state.pagamento.length == 0){return false}
+
+    if (store.state.pagamento.find(item => item == 3)){
+        if(store.state.parcelamento.length == 0){return false}
+    }
+    
+
+    return true
+}

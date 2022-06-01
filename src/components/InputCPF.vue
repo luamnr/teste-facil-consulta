@@ -22,8 +22,6 @@
 
 // TODO CONSULTAR SE MEDICO JA EXISTE NA API
 
-
-
 import InputBase from "./InputBase.vue"
 import store from "../store"
 import { required } from "vuelidate/lib/validators"

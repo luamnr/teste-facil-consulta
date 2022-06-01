@@ -39,7 +39,7 @@
             <br>
             <b-row class="rowForm" align-self="center">
                 <b-col cols="11">
-                    <BotaoSubmit :local="{path : 'pagina2'}"/>
+                    <BotaoSubmit textoBotao="PROXIMO" cor="roxo" :local="{path : 'pagina2'}"/>
                 </b-col>
             </b-row>
 
@@ -73,7 +73,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

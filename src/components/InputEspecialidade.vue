@@ -41,12 +41,13 @@ export default {
             this.especialidades.push({value: element.id,
                             text: element.nome})
         });
-    },
 
-    mounted(){
+        if (store.state.especialidades && store.state.especialidades.length == 0){
+            store.state.especialidades = this.especialidades
+        }
+
         if (store.state.especialidade){
             this.especialidadeSelecionado = store.state.especialidade
-
         }
     },
 
@@ -81,6 +82,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-</style>

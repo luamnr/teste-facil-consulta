@@ -44,7 +44,7 @@ export default {
 
     created(){
         if (store.state.preco){
-            this.preco = store.state.preco
+            this.preco = store.state.preco;
         }
         
     },
@@ -54,9 +54,9 @@ export default {
 
     watch:{
         preco(novoPreco){
-            this.$v.$touch()
-            store.state.preco = novoPreco
-            submitLockControl(this.$v.$invalid)
+            this.$v.$touch();
+            store.state.preco = novoPreco;
+            submitLockControl(this.$v.$invalid);
         }
     },
 

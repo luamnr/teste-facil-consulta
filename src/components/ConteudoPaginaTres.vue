@@ -29,14 +29,14 @@
             <b-row class="rowForm">
                 <b-col cols="10" sm="10" md="12" lg="12">
                     <strong>Estado/Cidade</strong><br>
-                    {{ getStore().estado }}-{{getStore().cidade}}
+                    {{ getItemById(getStore().estado, "estados") }} - {{getItemById(getStore().cidade, "cidades")}}
                 </b-col>
             </b-row>
 
             <b-row class="rowForm">
                 <b-col cols="10" sm="10" md="12" lg="12">
                     <strong>Especialidade principal</strong><br>
-                    {{ getStore().especialidade}}
+                    {{getItemById(getStore().especialidade, "especialidades")}} 
                 </b-col>
             </b-row>
 
@@ -50,7 +50,16 @@
             <b-row class="rowForm">
                 <b-col cols="10" sm="10" md="12" lg="12">
                     <strong>Formas de pagamento da consulta</strong><br>
-                    {{ getStore().pagamento }} - {{getStore().parcelamento}}
+                    
+                    <li v-for='item in getItemsById(getStore().pagamento, "pagamentos")' :key="item">
+                    {{ item }}
+                        <ul v-if="item == 'Cartão de crédito'">
+                            <br>
+                        <li v-for='itemParc in getItemsById(getStore().parcelamento, "parcelamentos")' :key="itemParc">
+                        {{ itemParc }}
+                        </li>
+                        </ul>
+                    </li>
                 </b-col>
             </b-row>
 
@@ -58,7 +67,9 @@
             <b-row class="rowForm" align-self="center">
 
                 <b-col cols="11">
-                    <!-- <BotaoSubmit :local="{path: 'pagina3'}"/> -->
+                    <BotaoSubmit textoBotao="CADASTRAR PROFISSIONAL" cor="amarelo" :cadastrar="true" :local="{path: 'pagina4'}"/>
+                    <BotaoSubmit textoBotao="Editar cadastro" cor="branco" :cadastrar="true" :local="{path: '/'}"/>
+
                 </b-col>
 
             </b-row>
@@ -71,33 +82,52 @@
 
 <script>
 
-// import BotaoSubmit from "./BotaoSubmit"
+import BotaoSubmit from "./BotaoSubmit"
 import store from "../store"
-
+import {releaseSubmitLocker} from "../utils"
+/* eslint-disable */
 export default {
-    name: "FormulariosPaginaDois",
+    name: "FormulariosPaginaTres",
 
-    data(){
-        return{
-
-        }
+    mounted(){
+        releaseSubmitLocker();
     },
 
     methods:{
         getStore(){
-            console.log(typeof(store.state))
-            return store.state
-        }
+            return store.state;
+        },
+
+        getItemById(id, campo){
+            let temp
+                store.state[campo].forEach(element => {
+                    if (element.value == id){
+                        temp = element.text;
+                    }
+                });
+            // algum problema de escopo com a funcao anonima
+            return temp;
+        },
+
+        getItemsById(id, campo){
+            let temp = [];
+            id.forEach(idElement => {
+                store.state[campo].forEach(element => {
+                    if (element.value == idElement){
+                        temp.push(element.text);
+                    }
+                });
+            });
+
+            return temp;
+        },
     },
 
     components:{
-        // BotaoSubmit,
+        BotaoSubmit,
 
     },
 
-    mounted(){
-        this.objetos = store.state.nome
-    }
 }
 </script>
 

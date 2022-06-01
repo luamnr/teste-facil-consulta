@@ -32,7 +32,7 @@
             <br>
             <b-row class="rowForm" align-self="center">
                 <b-col cols="11">
-                    <BotaoSubmit :local="{path: 'pagina3'}"/>
+                    <BotaoSubmit textoBotao="PROXIMO" cor="roxo" :local="{path: 'pagina3'}"/>
                 </b-col>
             </b-row>
 

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <a  href=""> &#60;</a>
+  <a @click="$router.push('/')" href=""> &#60;</a>
 
   <div class="conteudo">
     <CaixaPrincipal >
@@ -24,7 +24,13 @@ import FormulariosPaginaDois from "../components/FormulariosPaginaDois"
 import MolduraImagem from "../components/MolduraImagem"
 
 export default {
-  name: 'PaginaUm',
+  name: 'PaginaDois',
+
+  data(){
+    return{
+      fromURL: ""
+    }
+  },
 
   components:{
     CaixaPrincipal,

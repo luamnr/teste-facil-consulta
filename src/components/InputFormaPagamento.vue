@@ -42,6 +42,10 @@ export default {
         if (store.state.pagamento.length > 0){
             this.selecionado = store.state.pagamento
         }
+
+        if (store.state.pagamentos && store.state.pagamentos.length == 0){
+            store.state.pagamentos = this.opcoesPagamento
+        }
     },
 
     computed:{
@@ -59,7 +63,6 @@ export default {
 
     watch:{
         selecionado(novaForma){
-            console.log(novaForma)
             this.$v.$touch()
             store.state.pagamento = novaForma
             submitLockControl(this.$v.$invalid)

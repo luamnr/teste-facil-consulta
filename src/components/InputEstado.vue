@@ -45,6 +45,10 @@ export default {
                                text: element.nome})
         });
 
+        if (store.state.estados && store.state.estados.length == 0){
+            store.state.estados = this.estados
+        }
+
         if (store.state.estado){
             this.estadoSelecionado = store.state.estado
         }
@@ -63,6 +67,7 @@ export default {
 
     watch:{
         estadoSelecionado(novoEstado){
+
             this.$v.$touch()
             store.state.estado = novoEstado
             this.$root.$emit("reloadCidades")

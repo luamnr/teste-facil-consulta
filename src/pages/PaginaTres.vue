@@ -1,6 +1,6 @@
 <template>
 <div>
-  <a  href=""> &#60;</a>
+  <a @click="$router.push('/pagina2')" href=""> &#60;</a>
 
   <div class="conteudo">
     <CaixaPrincipal >

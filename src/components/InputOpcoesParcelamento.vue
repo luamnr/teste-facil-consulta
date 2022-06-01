@@ -38,6 +38,11 @@ export default {
         if (store.state.parcelamento){
             this.selecionadoParcelamento = store.state.parcelamento
         }
+
+        if (store.state.parcelamentos && store.state.parcelamentos.length == 0){
+            store.state.parcelamentos = this.opcoesParcelamento
+        }
+    
     },
 
     beforeDestroy(){

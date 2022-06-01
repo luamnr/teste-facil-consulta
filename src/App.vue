@@ -19,13 +19,16 @@ export default ({
   created(){
     if (localStorage.state){
       store.state = JSON.parse(localStorage.state)
+
+
     }
   },
 
   beforeUpdate(){
     localStorage.state = JSON.stringify(store.state)
     
-  }
+  },
+  
   
 })
 </script>

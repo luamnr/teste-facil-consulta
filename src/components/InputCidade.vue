@@ -35,14 +35,26 @@ export default {
 
     async created(){
 
+        
+        if (store.state.cidade && store.state.estado){
+            this.estadoId = store.state.estado
+            this.requestCidades()
+            this.cidadeSelecionada = store.state.cidade
+        }  
+
         this.$root.$on("reloadCidades", ()=>{
             if (store.state.estado != this.estadoId){
                 this.estadoId = store.state.estado
                 this.cidadeSelecionada = ""
+                store.state.cidades = []
+                submitLockControl(this.$v.$invalid)
                 this.requestCidades()
             }
         })
+
+
     },
+
 
     components:{
         InputBase
@@ -69,6 +81,11 @@ export default {
                                 text: element.nome})
             });
             this.cidades = tempCidades
+         
+        if (store.state.cidades && store.state.cidades.length == 0){
+            store.state.cidades = this.cidades
+        }
+        
         }
     },
 
@@ -83,10 +100,9 @@ export default {
     validations:{
         cidadeSelecionada : {
             required,
+            // minLength: minLength(3),
+
         }
     }
 }
 </script>
-
-<style scoped>
-</style>

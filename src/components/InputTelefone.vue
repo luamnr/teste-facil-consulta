@@ -38,15 +38,15 @@ export default {
 
     mounted(){
         if (store.state.telefone){
-            this.telefone = store.state.telefone
+            this.telefone = store.state.telefone;
         }
     },
 
     watch:{
         telefone(novoTelefone){
-            this.$v.$touch()
-            store.state.telefone = novoTelefone
-            submitLockControl(this.$v.$invalid)
+            this.$v.$touch();
+            store.state.telefone = novoTelefone;
+            submitLockControl(this.$v.$invalid);
 
         }
     },
