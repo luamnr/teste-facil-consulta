@@ -98,7 +98,6 @@ export default {
 
     computed:{
         colorClass(){
-            console.log(this.cor)
             if (this.cor == "amarelo"){
                 return "form-control amarelo BotaoSubmit";
             }

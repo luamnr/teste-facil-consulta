@@ -7,7 +7,7 @@
     <b-row  class="containerForms" >
 
 
-        <b-col cols="12" md="6" v-for="medico in listaMedicos" :key="medico.id">
+        <b-col cols="12" md="12" lg="6" v-for="medico in listaMedicos" :key="medico.id">
             <MedicoCard :nome="medico.nome" :cpf="medico.cpf" :cidade="medico.cidadeId" :especialidade="medico.especialidadeId"/>
         </b-col>
 
@@ -15,17 +15,17 @@
     </b-row>
 
     <b-row>
-        <b-col cols="12" md="6" lg="6" xl="6">
+        <b-col cols="12" >
             <b-button style="background-color: #483698" class="form-control" @click="proximo">Proximos</b-button>
 
         </b-col>
-        <b-col>
-
-            <b-button style="background-color: #FBDE40;color:black" class="form-control" @click="router.push('/')">Cadastrar outro</b-button>
+            
+        <b-col style="padding-top:3%;" cols="12" >
+            <b-button style="background-color: #FBDE40;color:black" class="form-control" @click="$router.push('/')">Cadastrar outro</b-button>
         </b-col>
 
     </b-row>
-    
+
     <p style="font-size: 2em">
         {{numeroItens}}
     </p>
