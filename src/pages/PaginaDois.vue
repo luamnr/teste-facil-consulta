@@ -7,7 +7,7 @@
         <h1 slot="tituloDaCaixa">Sobre o atendimento</h1>
         <h3 slot="tituloDaCaixa">Detalhes do atendimento</h3>
 
-      <FormulariosPaginaDois slot="formularios"/>
+      <ConteudoPaginaDois slot="conteudo"/>
       
       <MolduraImagem slot="foto">
         <img class="imagem" src="../assets/desktop-pagina-2.png" >
@@ -20,7 +20,7 @@
 <script>
 
 import CaixaPrincipal from "../components/CaixaPrincipal"
-import FormulariosPaginaDois from "../components/FormulariosPaginaDois"
+import ConteudoPaginaDois from "../pages_content/ConteudoPaginaDois"
 import MolduraImagem from "../components/MolduraImagem"
 
 export default {
@@ -34,7 +34,7 @@ export default {
 
   components:{
     CaixaPrincipal,
-    FormulariosPaginaDois,
+    ConteudoPaginaDois,
     MolduraImagem
   },
 

@@ -51,13 +51,13 @@
 
 <script>
 
-import InputNome from "./InputNome"
-import InputCPF from "./InputCPF"
-import InputTelefone from "./InputTelefone"
-import BotaoSubmit from "./BotaoSubmit"
-import InputEstado from "./InputEstado"
-import InputCidade from "./InputCidade"
-import BarraDeProgresso from "./BarraDeProgresso"
+import InputNome from "../components/InputNome";
+import InputCPF from "../components/InputCPF";
+import InputTelefone from "../components/InputTelefone";
+import BotaoSubmit from "../components/BotaoSubmit";
+import InputEstado from "../components/InputEstado";
+import InputCidade from "../components/InputCidade";
+import BarraDeProgresso from "../components/BarraDeProgresso";
 
 export default {
     name: "FormulariosPaginaUm",

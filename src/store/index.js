@@ -19,9 +19,6 @@ const store = {
     },
 
     submitLocker: true,
+};
 
-
-
-}
-
-export default store
+export default store;

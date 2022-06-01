@@ -1,5 +1,5 @@
 <template>
-    <div class="containerPrincipal" style="margin-top: 20px">
+    <div class="containerPrincipal" >
     
         <b-row>
             <slot name="tituloDaCaixa"></slot>
@@ -7,10 +7,11 @@
 
         <b-row>
             <b-col class="colunaForm" cols="12" sm="12" md="6" xl="6">
-                <slot name="formularios"></slot>
+                <slot name="conteudo"></slot>
             </b-col>
 
             <b-col offset="1" cols="12" sm="0" md="5" xl="5" class="d-none d-md-block">
+                
                 <slot name="foto"></slot>
             </b-col>
         </b-row>
@@ -25,11 +26,13 @@ export default {
 
 <style > 
 .containerPrincipal{
-  border-radius: 30px;
-  width: 80%;
-  background-color: #fff;
-  height: 100%;
-  padding: 4% 4% 4% 8%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border-radius: 30px;
+    width: 80%;
+    background-color: #fff;
+    height: 100%;
+    padding: 4% 4% 4% 8%;
 
 }
 /* 1200px */

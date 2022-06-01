@@ -1,4 +1,4 @@
-# consulta-facil
+# facil-consulta
 
 ## Project setup
 ```

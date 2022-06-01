@@ -82,9 +82,9 @@
 
 <script>
 
-import BotaoSubmit from "./BotaoSubmit"
-import store from "../store"
-import {releaseSubmitLocker} from "../utils"
+import BotaoSubmit from "../components/BotaoSubmit";
+import store from "../store";
+import {releaseSubmitLocker} from "../utils";
 /* eslint-disable */
 export default {
     name: "FormulariosPaginaTres",
@@ -105,7 +105,6 @@ export default {
                         temp = element.text;
                     }
                 });
-            // algum problema de escopo com a funcao anonima
             return temp;
         },
 

@@ -1,13 +1,12 @@
 <template>
 <div>
-  <a @click="$router.go(-1)" > &#60;</a>
-
+<br>
   <div class="conteudo">
     <CaixaPrincipal >
         <h1 slot="tituloDaCaixa">Sobre o profissional</h1>
         <h3 slot="tituloDaCaixa">Dados do profissional</h3>
 
-      <FormulariosPaginaUm slot="formularios"/>
+      <ConteudoPaginaUm slot="conteudo"/>
       
       <MolduraImagem slot="foto">
         <img class="imagem" src="../assets/desktop-pagina-1.png" >
@@ -20,7 +19,7 @@
 <script>
 
 import CaixaPrincipal from "../components/CaixaPrincipal"
-import FormulariosPaginaUm from "../components/FormulariosPaginaUm"
+import ConteudoPaginaUm from "../pages_content/ConteudoPaginaUm"
 import MolduraImagem from "../components/MolduraImagem"
 
 export default {
@@ -28,7 +27,7 @@ export default {
 
   components:{
     CaixaPrincipal,
-    FormulariosPaginaUm,
+    ConteudoPaginaUm,
     MolduraImagem
   },
 

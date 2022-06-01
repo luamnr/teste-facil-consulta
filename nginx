@@ -1,0 +1,10 @@
+server {
+    listen 54321 default_server;
+
+    root /var/www/html;
+    server_name _;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}

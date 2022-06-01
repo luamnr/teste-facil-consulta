@@ -2,21 +2,21 @@
 // Arquivo de utilidades para o resto do programa
 /* eslint-disable */
 
-import store from "../store"
+import store from "../store";
 
 
 export function telefoneLenghtValidator (valor){
     if (valor.length == 16){
-        return true
+        return true;
     }
     else{
-        return false
+        return false;
     }
 }
 
 
 export const prepareCPF = (cpf)=>{
-    return cpf.replace(/[.]/g, "").replace("-", "")
+    return cpf.replace(/[.]/g, "").replace("-", "");
 }
 
 
@@ -46,7 +46,7 @@ export function testaCPF(cpf) {
 
 
 const preparePreco = (preco) => {
-    return Number(preco.replace(/[,]/g, "."))
+    return Number(preco.replace(/[,]/g, "."));
 }
 
 
@@ -54,18 +54,18 @@ export function precoMaior (preco) {
 
 
     if (preparePreco(preco) > 350){
-        return false
+        return false;
     }
-    return true
+    return true;
 }
 
 
 export function precoMenor (preco) {
 
     if (preparePreco(preco) < 30){
-        return false
+        return false;
     }
-    return true
+    return true;
 }
 
 
@@ -75,28 +75,28 @@ export function submitLockControl(valorValidacaoComponente){
 
        // form valido e lock ativo, desativar lock
     if (!valorValidacaoComponente && globalValidator){
-        store.submitLocker = false
+        store.submitLocker = false;
     }
         // form invalido e lock ativo, lock ativado
     else if (valorValidacaoComponente && globalValidator){
 
-        store.submitLocker = true
+        store.submitLocker = true;
     }
         // form invalido e lock inativo, ativar lock
     else if (valorValidacaoComponente && !globalValidator){
 
-        store.submitLocker = true
+        store.submitLocker = true;
     }
         // form valido e lock ativo desativar lock
     else{
 
-        store.submitLocker = false
+        store.submitLocker = false;
     }
 }
 
 
 export const getSubmitLocker = () => {
-    return store.submitLocker
+    return store.submitLocker;
 }
 
 
@@ -110,10 +110,10 @@ export function validadorPagUm(){
     let itens = ["nome", "cpf", "telefone", "estado", "cidade"]
     for (let item in itens){
         if (store.state[itens[item]].length == 0){
-            return false
+            return false;
         }
     }
-    return true
+    return true;
 }
 
 

@@ -44,11 +44,11 @@
 
 <script>
 
-import BotaoSubmit from "./BotaoSubmit"
-import InputFormaPagamento from "./InputFormaPagamento"
-import BarraDeProgresso from "./BarraDeProgresso"
-import InputValor from "./InputValor"
-import InputEspecialidade from "./InputEspecialidade"
+import BotaoSubmit from "../components/BotaoSubmit";
+import InputFormaPagamento from "../components/InputFormaPagamento";
+import BarraDeProgresso from "../components/BarraDeProgresso";
+import InputValor from "../components/InputValor";
+import InputEspecialidade from "../components/InputEspecialidade";
 
 export default {
     name: "FormulariosPaginaDois",
