@@ -62,12 +62,11 @@ export default {
         },
         reset(){
             this.listaNum = 0
-        }
-    },
-
-    computed:{
-
-        numeroItens(){
+        },
+        last(){
+            this.listaNum = this.lenArrayFunc() * 4
+        },
+        lenArrayFunc(){
             let lengthArr
             if (this.medicos.length % 4 == 0){
                 lengthArr = Math.floor(this.medicos.length/4) -1
@@ -75,6 +74,15 @@ export default {
             else{
                 lengthArr = Math.floor(this.medicos.length/4)
             }
+            return lengthArr
+        }
+    },
+
+    computed:{
+
+        numeroItens(){
+            let lengthArr = this.lenArrayFunc()
+            
             return `${this.listaNum/4 +(1) }/${lengthArr +(1)}`
         },
 
@@ -84,9 +92,8 @@ export default {
             }
 
             if (this.listaNum < 0){
-                this.reset()
+                this.last()
             }
-
             return this.medicos.slice(this.listaNum, this.listaNum+4)
         }
     },
