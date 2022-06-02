@@ -23,7 +23,6 @@ export default ({
     }
     else{
       let medicos = await getMedicos()
-      console.log(medicos)
       store.state.todosMedicos = medicos
     }
   },

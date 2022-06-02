@@ -2,6 +2,7 @@ FROM debian
 
 RUN apt update
 RUN apt -y install nginx
+RUN apt -y install vim
 
 RUN rm /var/www/html/*
 COPY ./dist /var/www/html

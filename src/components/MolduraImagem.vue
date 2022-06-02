@@ -2,7 +2,6 @@
 <span>
     <slot></slot>
 </span>
-    <!-- <img class="imagem" :src="this.src" > -->
 </template>
 
 <script>
@@ -21,7 +20,6 @@ export default {
   position:relative;
   top: 50%;
   transform: translateY(-60%);
-  /* padding-left: 10%; */
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1600px){
