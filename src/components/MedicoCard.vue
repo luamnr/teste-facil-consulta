@@ -23,7 +23,7 @@
 
 <script>
 
-import {getItemById} from "../utils"
+import {getItemById} from "../utils";
 
 export default {
     nome: "MedicoCard",

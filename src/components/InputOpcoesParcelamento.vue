@@ -47,7 +47,7 @@ export default {
 
     beforeDestroy(){
         if (!store.state.parcelamento.includes("3")){
-            store.state.parcelamento = []
+            store.state.parcelamento = [];
         }
         
     },
@@ -64,6 +64,7 @@ export default {
 
     watch:{
         selecionadoParcelamento(novaForma){
+
             this.$v.$touch()
             store.state.parcelamento = novaForma
         }
