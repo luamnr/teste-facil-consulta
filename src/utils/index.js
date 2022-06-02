@@ -30,13 +30,13 @@ export async function getMedicos(){
 
 // checa se o cpf já é de algum médico cadastrado
 export function cpfCadastrado(cpf){
-    let retorno = true
+    let retorno = true;
     store.state.todosMedicos.forEach(element=>{
         if(element.cpf == prepareCPF(cpf)){
-            retorno = false
-        }
+            retorno = false;
+        };
     });
-    return retorno
+    return retorno;
 
 }
 
@@ -49,12 +49,13 @@ export const prepareCPF = (cpf)=>{
 // validar o cpf 
 export function testaCPF(cpf) {
 
-    var strCPF = prepareCPF(cpf)
+    var strCPF = prepareCPF(cpf);
 
     var Soma;
     var Resto;
     Soma = 0;
-    if (strCPF == "00000000000") return false;
+    
+    for(let i=0; i<=9; i++) if (strCPF == String(i).repeat(11)) return false;
 
     for (let i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
     Resto = (Soma * 10) % 11;
@@ -108,11 +109,11 @@ export function validadorPagUm(){
     }
     
     if (store.state.cpf.length != 14 || !testaCPF(store.state.cpf) || !cpfCadastrado(store.state.cpf)){
-        return false
+        return false;
     }
 
     if (store.state.telefone.length != 16){
-        return false
+        return false;
     }
     
     return true;

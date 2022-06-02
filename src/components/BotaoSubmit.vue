@@ -65,14 +65,16 @@ export default {
 
             }
 
-            if (this.$router.currentRoute.path == "/"){
+            let currPath = this.$router.currentRoute.path
+
+            if (currPath == "/" || currPath == "/pagina2" ){
                 if (!validadorPagUm()){
                     this.showAlert()
                     return
                 }
             }
 
-            if (this.$router.currentRoute.path == "/pagina2"){
+            if (currPath == "/" || currPath == "/pagina2" ){
                 if (!validadorPagDois()){
                     this.showAlert()
                     return

@@ -15,11 +15,16 @@
     </b-row>
 
     <b-row>
-        <b-col cols="12">
+        <b-col cols="6">
+            <b-button style="background-color: #483698" class="form-control" @click="anterior">Anteriores</b-button>
+
+        </b-col>
+        <b-col cols="6">
             <b-button style="background-color: #483698" class="form-control" @click="proximo">Proximos</b-button>
 
         </b-col>
-            
+    </b-row>
+    <b-row>        
         <b-col style="padding-top:3%;" cols="12" >
             <b-button style="background-color: #FBDE40;color:black" class="form-control" @click="$router.push('/')">Cadastrar outro</b-button>
         </b-col>
@@ -44,7 +49,7 @@ export default {
     data(){
         return{
             medicos: store.state.todosMedicos,
-            listaNum: 0
+            listaNum: 0,
         }
     },
 
@@ -52,7 +57,9 @@ export default {
         proximo(){
             this.listaNum += 4
         },
-
+        anterior(){
+            this.listaNum -= 4
+        },
         reset(){
             this.listaNum = 0
         }
@@ -68,13 +75,18 @@ export default {
             else{
                 lengthArr = Math.floor(this.medicos.length/4)
             }
-            return `${this.listaNum/4}/${lengthArr}`
+            return `${this.listaNum/4 +(1) }/${lengthArr +(1)}`
         },
 
         listaMedicos(){
             if (this.listaNum > this.medicos.length -1 ){
                 this.reset()
             }
+
+            if (this.listaNum < 0){
+                this.reset()
+            }
+
             return this.medicos.slice(this.listaNum, this.listaNum+4)
         }
     },

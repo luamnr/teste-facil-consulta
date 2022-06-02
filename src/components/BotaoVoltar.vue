@@ -1,10 +1,7 @@
 <template>
 
 <div>
-
     <a class="conteudo botaoVoltar" @click="$router.push(rota)" href=""> &#60;</a>
-
-
 </div>
 
 </template>

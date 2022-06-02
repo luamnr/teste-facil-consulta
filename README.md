@@ -21,6 +21,9 @@ docker-compose up -d
 ```
 ---
 # Desenvolvimento
+node version => 14.19.2
+vue version => 2.6.14
+
 Não tinha trabalhado com o Vue antes, então realizei leituras da documentação, acompanhei alguns vídeos no youtube e um curso da udemy, para buscar os fundamentos e exemplos, meu conhecimento prévio com a ferramenta React auxiliou com similaridades no funcionamento de ambos, além da curva de aprendizado não ser muito grande. Porém tentei ser o mais simples e funcional, cumprindo todos os requisitos com a menor quantidade de código e a maior simplicidade possível.
 
 ## Componentização
