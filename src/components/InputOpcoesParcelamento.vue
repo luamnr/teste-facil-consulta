@@ -26,9 +26,9 @@ export default {
         return {
             selecionadoParcelamento: [],
             opcoesParcelamento: [
-                {"text": "2x, sem juros", value: "1"},
-                {"text": "3x, sem juros", value: "2"},
-                {"text": "4x, sem juros", value: "3"},
+                {"text": "1x, sem juros", value: "1"},
+                {"text": "2x, sem juros", value: "2"},
+                {"text": "3x, sem juros", value: "3"},
                   
             ],
         }
