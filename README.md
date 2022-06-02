@@ -1,25 +1,4 @@
-# facil-consulta
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
----
+# facil-consulta setup
 
 ## Project setup docker
 ```
@@ -31,12 +10,12 @@ npm install
 npm run build
 ```
 
-## Criar o container configurado com nginx
+## Preparar o container
 ```
-docker build -t facil-consulta:1.0.0 .
+docker-compose build
 ```
 
 ## Executar o container
 ```
-docker run -p 54321:54321 -d --name facil-consulta facil-consulta:1.0.0
+docker-compose up -d
 ```
