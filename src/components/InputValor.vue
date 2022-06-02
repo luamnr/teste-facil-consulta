@@ -24,11 +24,10 @@
 
 <script>
 
-import InputBase from "./InputBase.vue"
-import store from "../store"
-import {submitLockControl} from "../utils"
-import { required,  } from "vuelidate/lib/validators"
-import { precoMenor, precoMaior } from "../utils"
+import InputBase from "./InputBase.vue";
+import store from "../store";
+import { required,  } from "vuelidate/lib/validators";
+import { precoMenor, precoMaior } from "../utils";
 
 export default {
     name: "InputValor",
@@ -58,7 +57,6 @@ export default {
         preco(novoPreco){
             this.$v.$touch();
             store.state.preco = novoPreco;
-            submitLockControl(this.$v.$invalid);
         }
     },
 

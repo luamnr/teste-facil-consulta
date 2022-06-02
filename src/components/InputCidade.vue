@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import store from "../store"
-import InputBase from "./InputBase.vue"
-import api from "../api"
-import { required } from "vuelidate/lib/validators"
-import {submitLockControl} from "../utils"
+import store from "../store";
+import InputBase from "./InputBase.vue";
+import api from "../api";
+import { required } from "vuelidate/lib/validators";
+// import {submitLockControl} from "../utils";
 
 export default {
     name: "InputCidade",
@@ -43,11 +43,11 @@ export default {
 
         this.$root.$on("reloadCidades", ()=>{
             if (store.state.estado != this.estadoId){
-                this.estadoId = store.state.estado
-                this.cidadeSelecionada = ""
-                store.state.cidades = []
-                submitLockControl(this.$v.$invalid)
-                this.requestCidades()
+                this.estadoId = store.state.estado;
+                this.cidadeSelecionada = "";
+                store.state.cidades = [];
+                // submitLockControl(this.$v.$invalid);
+                this.requestCidades();
             }
         })
     },
@@ -97,7 +97,7 @@ export default {
         cidadeSelecionada(novaCidade){
             this.$v.$touch()
             store.state.cidade = novaCidade
-            submitLockControl(this.$v.$invalid)
+            // submitLockControl(this.$v.$invalid)
         },
     },
 

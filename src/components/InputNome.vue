@@ -6,9 +6,6 @@
         :class="invalido" 
     ></b-form-input>
 
-    <!-- TODO desvendar por que dirty e nome required nao estao
-    dando o efeito desejado ao digitar um nome e apagar o v-if nao aparece, porem a computed invalido
-    atualiza a classe da borda vermelha -->
     <div class="erro" v-if="!$v.nome.required && $v.$dirty">Campo obrigatório!</div>
     <div class="erro" v-else-if="!$v.nome.minLength && $v.$dirty">Nome muito pequeno!</div>
     <div class="erro" v-else-if="!$v.nome.maxLength && $v.$dirty">Nome muito grande!</div>
@@ -21,10 +18,9 @@
 
 <script>
 
-import { required, minLength, maxLength } from "vuelidate/lib/validators"
-import InputBase from "./InputBase"
-import store from "../store"
-import {submitLockControl } from "../utils"
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
+import InputBase from "./InputBase";
+import store from "../store";
 
 export default {
     nome: "InputNome",
@@ -47,9 +43,8 @@ export default {
 
     watch:{
         nome(novoNome){
-            this.$v.$touch()
-            store.state.nome = novoNome
-            submitLockControl(this.$v.$invalid)
+            this.$v.$touch();
+            store.state.nome = novoNome;
             
         }
     },

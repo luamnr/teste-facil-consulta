@@ -8,6 +8,7 @@
       <ConteudoPaginaQuatro slot="conteudo"/>
       
       <MolduraImagem slot="foto">
+        <!-- foto 1 reutilizada -->
         <img class="imagem" src="../assets/desktop-pagina-1.png" >
       </MolduraImagem> 
     </CaixaPrincipal>
@@ -17,12 +18,12 @@
 
 <script>
 
-import CaixaPrincipal from "../components/CaixaPrincipal"
-import ConteudoPaginaQuatro from "../pages_content/ConteudoPaginaQuatro"
-import MolduraImagem from "../components/MolduraImagem"
+import CaixaPrincipal from "../components/CaixaPrincipal";
+import ConteudoPaginaQuatro from "../pages_content/ConteudoPaginaQuatro";
+import MolduraImagem from "../components/MolduraImagem";
 
 export default {
-  name: 'PaginaTres',
+  name: 'PaginaQuatro',
 
   components:{
     CaixaPrincipal,

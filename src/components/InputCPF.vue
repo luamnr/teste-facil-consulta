@@ -23,12 +23,10 @@
 
 <script>
 
-// TODO CONSULTAR SE MEDICO JA EXISTE NA API
-
-import InputBase from "./InputBase.vue"
-import store from "../store"
-import { required } from "vuelidate/lib/validators"
-import {submitLockControl, testaCPF, cpfCadastrado } from "../utils"
+import InputBase from "./InputBase.vue";
+import store from "../store";
+import { required } from "vuelidate/lib/validators";
+import { testaCPF, cpfCadastrado } from "../utils";
 
 
 export default {
@@ -45,15 +43,14 @@ export default {
 
     mounted(){
         if (store.state.cpf){
-            this.cpf = store.state.cpf
+            this.cpf = store.state.cpf;
         }
     },
 
     watch:{
         cpf(novoCPF){
-            this.$v.$touch()
-            store.state.cpf = novoCPF
-            submitLockControl(this.$v.$invalid)
+            this.$v.$touch();
+            store.state.cpf = novoCPF;
         }
     },
 

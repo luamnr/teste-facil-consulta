@@ -18,11 +18,10 @@
 
 <script>
 
-import InputBase from "./InputBase.vue"
-import api from "../api"
-import { required } from "vuelidate/lib/validators"
-import {submitLockControl} from "../utils"
-import store from "../store"
+import InputBase from "./InputBase.vue";
+import api from "../api";
+import { required } from "vuelidate/lib/validators";
+import store from "../store";
 
 export default {
     name: "InputEspecialidade",
@@ -63,9 +62,8 @@ export default {
 
     watch:{
         especialidadeSelecionado(novaEspecialidade){
-            this.$v.$touch()
-            store.state.especialidade = novaEspecialidade
-            submitLockControl(this.$v.$invalid)
+            this.$v.$touch();
+            store.state.especialidade = novaEspecialidade;
             
         },
     },

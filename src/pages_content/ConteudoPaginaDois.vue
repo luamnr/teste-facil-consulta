@@ -51,7 +51,7 @@ import InputValor from "../components/InputValor";
 import InputEspecialidade from "../components/InputEspecialidade";
 
 export default {
-    name: "FormulariosPaginaDois",
+    name: "ConteudoPaginaDois",
 
     components:{
         BotaoSubmit,

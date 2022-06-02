@@ -17,11 +17,10 @@
 
 <script>
 
-import InputBase from "./InputBase.vue"
-import api from "../api"
-import store from "../store"
-import { required } from "vuelidate/lib/validators"
-import {submitLockControl } from "../utils"
+import InputBase from "./InputBase.vue";
+import api from "../api";
+import store from "../store";
+import { required } from "vuelidate/lib/validators";
 
 export default {
     name: "InputEstado",
@@ -46,11 +45,11 @@ export default {
         });
 
         if (store.state.estados && store.state.estados.length == 0){
-            store.state.estados = this.estados
+            store.state.estados = this.estados;
         }
 
         if (store.state.estado){
-            this.estadoSelecionado = store.state.estado
+            this.estadoSelecionado = store.state.estado;
         }
         
     },
@@ -68,10 +67,9 @@ export default {
     watch:{
         estadoSelecionado(novoEstado){
 
-            this.$v.$touch()
-            store.state.estado = novoEstado
-            this.$root.$emit("reloadCidades")
-            submitLockControl(this.$v.$invalid)
+            this.$v.$touch();
+            store.state.estado = novoEstado;
+            this.$root.$emit("reloadCidades");
             
         }
     },
@@ -84,6 +82,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-</style>

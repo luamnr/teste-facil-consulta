@@ -9,7 +9,7 @@
       variant="warning"
       @dismiss-count-down="countDownChanged"
     >
-      Preencha todos os campos!
+      Preencha todos os campos corretamente!
     </b-alert>
     <b-button @click="mudarRota(local)" :class="colorClass">
         {{ textoBotao }}
@@ -22,8 +22,8 @@
 <script>
 
 
-import { getSubmitLocker, lockSubmitlocker, validadorPagUm, validadorPagDois, limparStore } from '../utils'
-import store from "../store"
+import { validadorPagUm, validadorPagDois, limparStore } from '../utils';
+import store from "../store";
 
 export default {
     name: "BotaoSubmit",
@@ -46,11 +46,13 @@ export default {
 
             if (this.cadastrar){
                 
-                this.$router.push(local)
+                if (store.state.nome == ""){
+                    this.showAlert()
+                    return
+                }
                 
                 // gerar um id aleatorio depois do 20 possiveis 100
                 let medicoId = Math.floor(Math.random() * 100) + 20;
-                
                 store.state.todosMedicos.push({
                     id: medicoId, 
                     nome: store.state.nome, 
@@ -61,11 +63,6 @@ export default {
 
                 limparStore()
 
-            }
-
-            if (getSubmitLocker()){
-                this.showAlert()
-                return
             }
 
             if (this.$router.currentRoute.path == "/"){
@@ -83,7 +80,6 @@ export default {
             }
 
             this.$router.push(local)
-            lockSubmitlocker()
         },
 
         countDownChanged(dismissCountDown) {

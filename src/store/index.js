@@ -18,8 +18,6 @@ const store = {
         pagamentos: [],
         parcelamentos: [],
     },
-
-    submitLocker: true,
 };
 
 export default store;

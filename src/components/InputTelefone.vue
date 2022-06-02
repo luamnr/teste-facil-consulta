@@ -24,7 +24,7 @@ import { required,  } from "vuelidate/lib/validators"
 import InputBase from "./InputBase.vue"
 import store from "../store"
 import {telefoneLenghtValidator} from "../utils"
-import {submitLockControl} from "../utils"
+// import {submitLockControl} from "../utils"
 
 
 export default {
@@ -50,7 +50,7 @@ export default {
         telefone(novoTelefone){
             this.$v.$touch();
             store.state.telefone = novoTelefone;
-            submitLockControl(this.$v.$invalid);
+            // submitLockControl(this.$v.$invalid);
 
         }
     },

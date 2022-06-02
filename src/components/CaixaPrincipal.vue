@@ -42,7 +42,8 @@ export default {
   }
 }
 
-/* Para os componentes unicos poderem compartilhar as classes */
+
+/* Para os formularios compartilharem as classes */
 
 .rowForm{
     padding: 2% 4% 2% 0;

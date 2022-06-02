@@ -17,10 +17,9 @@
 
 <script>
 
-import { required } from "vuelidate/lib/validators"
-import store from "../store"
-import { submitLockControl } from "../utils"
-import InputOpcoesParcelamento from "./InputOpcoesParcelamento"
+import { required } from "vuelidate/lib/validators";
+import store from "../store";
+import InputOpcoesParcelamento from "./InputOpcoesParcelamento";
 
 
 export default {
@@ -40,17 +39,17 @@ export default {
     
     mounted(){
         if (store.state.pagamento.length > 0){
-            this.selecionado = store.state.pagamento
+            this.selecionado = store.state.pagamento;
         }
 
         if (store.state.pagamentos && store.state.pagamentos.length == 0){
-            store.state.pagamentos = this.opcoesPagamento
+            store.state.pagamentos = this.opcoesPagamento;
         }
     },
 
     computed:{
         opcoesCartao(){
-            return this.selecionado.includes("3") ? true : false
+            return this.selecionado.includes("3") ? true : false;
         },
 
         invalido () {
@@ -63,9 +62,8 @@ export default {
 
     watch:{
         selecionado(novaForma){
-            this.$v.$touch()
-            store.state.pagamento = novaForma
-            submitLockControl(this.$v.$invalid)
+            this.$v.$touch();
+            store.state.pagamento = novaForma;
             
         }
     },
@@ -86,7 +84,6 @@ export default {
 
 <style>
     .form-check{
-        /* background-color: red; */
         margin-left: 10%;
         padding: 1%;
         padding-top: 3%;

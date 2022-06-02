@@ -1,13 +1,16 @@
-
 // Arquivo de utilidades para o resto do programa
 /* eslint-disable */
 
 import store from "../store";
 import api from "../api";
 
+const TELEFONE_MAX_LENGTH = 16;
+const PRECO_MAXIMO = 350;
+const PRECO_MINIMO = 30;
+
 
 export function telefoneLenghtValidator (valor){
-    if (valor.length == 16){
+    if (valor.length == TELEFONE_MAX_LENGTH){
         return true;
     }
     else{
@@ -25,7 +28,7 @@ export async function getMedicos(){
     return medicos;
 }
 
-
+// checa se o cpf já é de algum médico cadastrado
 export function cpfCadastrado(cpf){
     let retorno = true
     store.state.todosMedicos.forEach(element=>{
@@ -37,12 +40,13 @@ export function cpfCadastrado(cpf){
 
 }
 
-
+// formatação do cpf após aplicada a máscara
 export const prepareCPF = (cpf)=>{
     return cpf.replace(/[.]/g, "").replace("-", "");
 }
 
 
+// validar o cpf 
 export function testaCPF(cpf) {
 
     var strCPF = prepareCPF(cpf)
@@ -67,16 +71,17 @@ export function testaCPF(cpf) {
     return true;
 }
 
+// preparar a string do preço
 
 const preparePreco = (preco) => {
     return Number(preco.replace(/[,]/g, "."));
 }
 
 
+// funções que validam o preço
+
 export function precoMaior (preco) {
-
-
-    if (preparePreco(preco) > 350){
+    if (preparePreco(preco) > PRECO_MAXIMO){
         return false;
     }
     return true;
@@ -84,69 +89,54 @@ export function precoMaior (preco) {
 
 
 export function precoMenor (preco) {
-
-    if (preparePreco(preco) < 30){
+    if (preparePreco(preco) < PRECO_MINIMO){
         return false;
     }
     return true;
 }
 
 
-
-export function submitLockControl(valorValidacaoComponente){
-    let globalValidator = store.submitLocker
-
-       // form valido e lock ativo, desativar lock
-    if (!valorValidacaoComponente && globalValidator){
-        store.submitLocker = false;
-    }
-        // form invalido e lock ativo, lock ativado
-    else if (valorValidacaoComponente && globalValidator){
-
-        store.submitLocker = true;
-    }
-        // form invalido e lock inativo, ativar lock
-    else if (valorValidacaoComponente && !globalValidator){
-
-        store.submitLocker = true;
-    }
-        // form valido e lock ativo desativar lock
-    else{
-
-        store.submitLocker = false;
-    }
-}
-
-
-export const getSubmitLocker = () => {
-    return store.submitLocker;
-}
-
-
-export const lockSubmitlocker = () => {store.submitLocker = true}
-
-
-export const releaseSubmitLocker = () => {store.submitLocker = false}
-
-
+// o módulo vuelidate que foi utilizado para validar os formulários
+// me serviu bem provendo as mensagens para os campos incorretos, porém
+// falha em ser simples para acessar em componentes irmãos e pais.
 export function validadorPagUm(){
-    let itens = ["nome", "cpf", "telefone", "estado", "cidade"]
+    let itens = ["nome", "estado", "cidade"]
     for (let item in itens){
         if (store.state[itens[item]].length == 0){
             return false;
         }
     }
+    
+    if (store.state.cpf.length != 14 || !testaCPF(store.state.cpf) || !cpfCadastrado(store.state.cpf)){
+        return false
+    }
+
+    if (store.state.telefone.length != 16){
+        return false
+    }
+    
     return true;
+
 }
 
 
+// Validação para os formulários da página dois
 export function validadorPagDois(){
 
-    if(store.state.especialidade.length == 0){return false}
+    // a especialidade é um campo que seleciona,
+    // então o importante é estar selecionado
+    if(store.state.especialidade.length == 0){
+        return false;
+    }
 
-    if(preparePreco(store.state.preco) < 30){return false}
 
-    if(store.state.pagamento.length == 0){return false}
+    if(!precoMaior(store.state.preco) || !precoMenor(store.state.preco)){
+        return false;
+    }
+
+    if(store.state.pagamento.length == 0){
+        return false;
+    }
 
     if (store.state.pagamento.find(item => item == 3)){
         if(store.state.parcelamento.length == 0){return false}

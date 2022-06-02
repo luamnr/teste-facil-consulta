@@ -20,10 +20,10 @@
 
 <script>
 
-import CaixaPrincipal from "../components/CaixaPrincipal"
-import ConteudoPaginaDois from "../pages_content/ConteudoPaginaDois"
-import MolduraImagem from "../components/MolduraImagem"
-import BotaoVoltar from "../components/BotaoVoltar"
+import CaixaPrincipal from "../components/CaixaPrincipal";
+import ConteudoPaginaDois from "../pages_content/ConteudoPaginaDois";
+import MolduraImagem from "../components/MolduraImagem";
+import BotaoVoltar from "../components/BotaoVoltar";
 
 export default {
   name: 'PaginaDois',
@@ -41,11 +41,6 @@ export default {
     BotaoVoltar
   },
 
-
 }
 </script>
 
-<style >
-
-
-</style>

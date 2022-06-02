@@ -19,10 +19,10 @@
 
 <script>
 
-import CaixaPrincipal from "../components/CaixaPrincipal"
-import ConteudoPaginaTres from "../pages_content/ConteudoPaginaTres"
-import MolduraImagem from "../components/MolduraImagem"
-import BotaoVoltar from "../components/BotaoVoltar"
+import CaixaPrincipal from "../components/CaixaPrincipal";
+import ConteudoPaginaTres from "../pages_content/ConteudoPaginaTres";
+import MolduraImagem from "../components/MolduraImagem";
+import BotaoVoltar from "../components/BotaoVoltar";
 
 export default {
   name: 'PaginaTres',

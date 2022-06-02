@@ -15,7 +15,7 @@
     </b-row>
 
     <b-row>
-        <b-col cols="12" >
+        <b-col cols="12">
             <b-button style="background-color: #483698" class="form-control" @click="proximo">Proximos</b-button>
 
         </b-col>
@@ -61,11 +61,18 @@ export default {
     computed:{
 
         numeroItens(){
-            return `${this.listaNum/4}/${Math.floor(this.medicos.length/4)}`
+            let lengthArr
+            if (this.medicos.length % 4 == 0){
+                lengthArr = Math.floor(this.medicos.length/4) -1
+            }
+            else{
+                lengthArr = Math.floor(this.medicos.length/4)
+            }
+            return `${this.listaNum/4}/${lengthArr}`
         },
 
         listaMedicos(){
-            if (this.listaNum > this.medicos.length){
+            if (this.listaNum > this.medicos.length -1 ){
                 this.reset()
             }
             return this.medicos.slice(this.listaNum, this.listaNum+4)

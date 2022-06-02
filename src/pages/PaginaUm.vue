@@ -18,9 +18,9 @@
 
 <script>
 
-import CaixaPrincipal from "../components/CaixaPrincipal"
-import ConteudoPaginaUm from "../pages_content/ConteudoPaginaUm"
-import MolduraImagem from "../components/MolduraImagem"
+import CaixaPrincipal from "../components/CaixaPrincipal";
+import ConteudoPaginaUm from "../pages_content/ConteudoPaginaUm";
+import MolduraImagem from "../components/MolduraImagem";
 
 export default {
   name: 'PaginaUm',

@@ -15,9 +15,8 @@
 
 <script>
 
-import { required } from "vuelidate/lib/validators"
-import store from "../store"
-import { submitLockControl, releaseSubmitLocker } from "../utils"
+import { required } from "vuelidate/lib/validators";
+import store from "../store";
 
 export default {
     name: "InputOpcoesParcelamento",
@@ -48,7 +47,6 @@ export default {
 
     beforeDestroy(){
         if (!store.state.parcelamento.includes("3")){
-            releaseSubmitLocker()
             store.state.parcelamento = []
         }
         
@@ -68,7 +66,6 @@ export default {
         selecionadoParcelamento(novaForma){
             this.$v.$touch()
             store.state.parcelamento = novaForma
-            submitLockControl(this.$v.$invalid)
         }
     },
 

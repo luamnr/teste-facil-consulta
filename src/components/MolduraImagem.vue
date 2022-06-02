@@ -24,7 +24,7 @@ export default {
 
 @media only screen and (min-width: 600px) and (max-width: 1600px){
   .imagem{
-    width: 114% !important;
+    width: 120% !important;
     height: auto;
   }
 }

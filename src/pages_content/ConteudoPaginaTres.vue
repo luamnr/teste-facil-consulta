@@ -68,8 +68,7 @@
 
                 <b-col cols="11">
                     <BotaoSubmit textoBotao="CADASTRAR PROFISSIONAL" cor="amarelo" :cadastrar="true" :local="{path: '/pagina4'}"/>
-                    <BotaoSubmit textoBotao="Editar cadastro" cor="branco" :local="{path: '/'}"/>
-
+                    <BotaoSubmit style="padding-top:2%;" textoBotao="Editar cadastro" cor="branco" :local="{path: '/'}"/>
                 </b-col>
 
             </b-row>
@@ -84,14 +83,10 @@
 
 import BotaoSubmit from "../components/BotaoSubmit";
 import store from "../store";
-import {releaseSubmitLocker, getItemById} from "../utils";
+import { getItemById} from "../utils";
 /* eslint-disable */
 export default {
     name: "ConteudoPaginaTres",
-
-    mounted(){
-        releaseSubmitLocker();
-    },
 
     methods:{
         getStore(){
@@ -116,7 +111,6 @@ export default {
 
     components:{
         BotaoSubmit,
-
     },
 
 }
