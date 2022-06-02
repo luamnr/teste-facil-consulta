@@ -12,4 +12,4 @@ COPY ./nginx /etc/nginx/sites-enabled
 
 EXPOSE 54321/tcp
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
