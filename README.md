@@ -43,6 +43,3 @@ Não fiz uso da ferramenta sass e scss por não ter tanto domínio das ferrament
 
 ## Validação dos campos
 Utilizei um módulo chamado vuelidate, que apesar de trazer funções interessantes para a renderização de erros e validação de campos, mostrou-se muito complexa para acessar em componentes irmãos, para que sejam conferidos antes de trocar de página. Então fiz simples verificações executadas no 'BotaoSubmit', que inclusive como requisitado foi compartilhado entre as três primeiras páginas, sendo reusado de forma simples. 
-
-## Considerações finais
-O tive dúvidas em alguns momentos, sobre quais as melhores ferramentas para determinada situação, principalmente pelo fato de que não tinha familiaridade com a biblioteca front-end Vue, porém espero que julguem que consigo rapidamente me adaptar as situações e aprender coisas novas, espero que gostem do meu teste e me chamem para fazer parte da equipe de vocês! Muito obrigado pela oportunidade.
